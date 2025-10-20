@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login with GitHub - 100 Days Tracker</title>
+  <link rel="stylesheet" href="styles-custom.css">
+  <style>
+    body {
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--neo-purple) 0%, var(--neo-pink) 100%);
+    }
+    
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: #fff;
+      border: 5px solid var(--neo-border);
+      box-shadow: 8px 8px 0 var(--neo-border);
+      padding: 3rem;
+      text-align: center;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      color: var(--neo-purple);
+      margin-bottom: 1rem;
+    }
+    
+    .info-box {
+      background: var(--neo-yellow);
+      border: 4px solid var(--neo-border);
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    
+    .info-box h3 {
+      margin-bottom: 1rem;
+    }
+    
+    .github-login-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.5rem 3rem;
+      background: var(--neo-text);
+      color: #fff;
+      border: 5px solid var(--neo-border);
+      box-shadow: 8px 8px 0 var(--neo-border);
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      margin: 2rem 0;
+    }
+    
+    .github-login-btn:hover {
+      transform: translate(4px, 4px);
+      box-shadow: 4px 4px 0 var(--neo-border);
+    }
+    
+    .github-icon {
+      width: 32px;
+      height: 32px;
+      fill: currentColor;
+    }
+    
+    .alternative {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 3px solid var(--neo-border);
+    }
+    
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    
+    .pros, .cons {
+      text-align: left;
+      padding: 1.5rem;
+      border: 4px solid var(--neo-border);
+    }
+    
+    .pros {
+      background: var(--neo-green);
+    }
+    
+    .cons {
+      background: #ffebee;
+    }
+    
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    
+    .comparison-table th,
+    .comparison-table td {
+      padding: 1rem;
+      border: 3px solid var(--neo-border);
+    }
+    
+    .comparison-table th {
+      background: var(--neo-cyan);
+      font-weight: 700;
+    }
+    
+    @media (max-width: 768px) {
+      .pros-cons {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🔐 Login with GitHub</h1>
+      <p>The easiest way to log your progress</p>
+    </div>
+
+    <div class="info-box">
+      <h3>🚨 Important Information</h3>
+      <p><strong>GitHub OAuth requires a backend server to work securely.</strong></p>
+      <p>For a <strong>truly static website</strong> (like GitHub Pages), we have limited options:</p>
+    </div>
+
+    <h2 style="margin-top: 3rem;">📊 Your Options:</h2>
+
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Pros</th>
+          <th>Cons</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>1. Personal Access Token</strong><br>(What we have)</td>
+          <td>
+            ✅ No backend needed<br>
+            ✅ Works on static sites<br>
+            ✅ Simple setup<br>
+            ✅ Full control
+          </td>
+          <td>
+            ❌ Manual token creation<br>
+            ❌ Need to store token
+          </td>
+          <td>Static websites, GitHub Pages</td>
+        </tr>
+        <tr>
+          <td><strong>2. GitHub OAuth</strong><br>(Login button)</td>
+          <td>
+            ✅ Easy for users<br>
+            ✅ "Login with GitHub"<br>
+            ✅ Automatic token<br>
+            ✅ Can revoke anytime
+          </td>
+          <td>
+            ❌ Requires backend server<br>
+            ❌ More complex setup<br>
+            ❌ Need hosting
+          </td>
+          <td>Apps with backend (Node.js, Python)</td>
+        </tr>
+        <tr>
+          <td><strong>3. GitHub Device Flow</strong></td>
+          <td>
+            ✅ No backend needed<br>
+            ✅ Secure<br>
+            ✅ Works on static sites
+          </td>
+          <td>
+            ❌ Clunky UX<br>
+            ❌ User visits another page<br>
+            ❌ Enters code manually
+          </td>
+          <td>CLI tools, Desktop apps</td>
+        </tr>
+        <tr>
+          <td><strong>4. Serverless Function</strong><br>(Netlify/Vercel)</td>
+          <td>
+            ✅ OAuth with no server<br>
+            ✅ Automatic deployment<br>
+            ✅ Free tier available
+          </td>
+          <td>
+            ❌ Requires deployment<br>
+            ❌ Platform-specific
+          </td>
+          <td>Modern static sites</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="margin: 3rem 0; padding: 2rem; background: var(--neo-cyan); border: 4px solid var(--neo-border);">
+      <h3>💡 Recommended Solution</h3>
+      <p><strong>For your GitHub Pages website, use the Personal Access Token method (already implemented).</strong></p>
+      <p>It's the most practical for static hosting and works perfectly!</p>
+      <a href="log-github-api.html" style="display: inline-block; margin-top: 1rem; padding: 1rem 2rem; background: var(--neo-green); border: 3px solid var(--neo-border); font-weight: 700; text-decoration: none; color: #000;">
+        → Go to Token-Based Logger
+      </a>
+    </div>
+
+    <div class="alternative">
+      <h2>🚀 Want OAuth? Here Are Your Options:</h2>
+      
+      <div class="pros-cons">
+        <div class="pros">
+          <h3>✅ Deploy with Backend</h3>
+          <ul style="margin-left: 1.5rem;">
+            <li><strong>Netlify</strong> - Free serverless functions</li>
+            <li><strong>Vercel</strong> - Easy GitHub integration</li>
+            <li><strong>Railway/Render</strong> - Free Node.js hosting</li>
+            <li><strong>Heroku</strong> - Simple deployment</li>
+          </ul>
+          <p style="margin-top: 1rem;"><strong>Setup time:</strong> 15-30 minutes</p>
+        </div>
+        
+        <div class="cons">
+          <h3>⚠️ Keep It Simple</h3>
+          <p><strong>The token method works great!</strong></p>
+          <ul style="margin-left: 1.5rem; margin-top: 1rem;">
+            <li>One-time setup (2 minutes)</li>
+            <li>No backend maintenance</li>
+            <li>No hosting costs</li>
+            <li>Works on GitHub Pages</li>
+            <li>Full control over security</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; padding: 1.5rem; background: #fff; border: 4px solid var(--neo-border);">
+        <h3>🔧 Want Me to Build OAuth Version?</h3>
+        <p>I can create versions for:</p>
+        <ul style="text-align: left; margin-left: 2rem;">
+          <li>✅ <strong>Netlify Functions</strong> - OAuth with serverless</li>
+          <li>✅ <strong>Vercel Functions</strong> - One-click deploy</li>
+          <li>✅ <strong>Device Flow</strong> - No backend (but clunky)</li>
+          <li>✅ <strong>Express.js Backend</strong> - Full featured</li>
+        </ul>
+        <p style="margin-top: 1rem;"><strong>Just let me know which one!</strong></p>
+      </div>
+    </div>
+
+    <div style="margin-top: 3rem; padding: 2rem; background: var(--neo-purple); color: #fff; border: 4px solid var(--neo-border);">
+      <h3>🎯 My Recommendation</h3>
+      <p><strong>For now, stick with the Personal Access Token method.</strong></p>
+      <p>It's secure, simple, and works perfectly for your use case!</p>
+      <p style="margin-top: 1rem;">You can always add OAuth later if you deploy with a backend.</p>
+    </div>
+
+    <div style="margin-top: 2rem;">
+      <a href="index.html" style="color: var(--neo-purple); font-weight: 700; text-decoration: none;">
+        ← Back to Home
+      </a>
+    </div>
+  </div>
+</body>
+</html>
