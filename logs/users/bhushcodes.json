@@ -1,0 +1,13 @@
+{
+  "user": "bhushcodes",
+  "entries": [
+    {
+      "day": 1,
+      "date": "2025-01-20",
+      "summary": "Built an amazing 100 Days of Code Tracker with neobrutalism UI! Created the leaderboard system and deployed to GitHub Pages.",
+      "technologies": ["HTML", "CSS", "JavaScript", "Python"],
+      "links": ["https://github.com/bhushcodes/100-days-of-code-tracker"],
+      "highlight": "Launched my first open-source project! 🚀"
+    }
+  ]
+}
