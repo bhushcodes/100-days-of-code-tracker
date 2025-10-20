@@ -40,7 +40,8 @@ body {
 }
 
 /* Custom cursor for clickable elements */
-a, button, .button, .how-it-works-card, .feature-card, .toggle-slider, [role="button"] {
+a, button, .button, .how-it-works-card, .feature-card, .toggle-slider, [role="button"], 
+svg, a svg, button svg, .button svg, .github-login-btn, .github-login-btn svg, input[type="submit"], input[type="button"] {
   cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" fill="%23ff006e" stroke="%23001858" stroke-width="3"/><circle cx="14" cy="14" r="4" fill="%23001858"/></svg>') 14 14, pointer !important;
 }
 
