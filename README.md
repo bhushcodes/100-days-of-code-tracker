@@ -288,7 +288,9 @@ This tracker makes that easier and more fun.
 
 ---
 
-**Built with ❤️ by developers, for developers**
+**Built with ❤️ + ☕ by [Bhushan Pawar](https://bhushan-pawar.vercel.app/)**
+
+Connect with me: [GitHub](https://github.com/bhushcodes) • [LinkedIn](https://www.linkedin.com/in/bhushcodes) • [Instagram](https://www.instagram.com/unfiltered.bhushan/)
 
 Questions? Found a bug? [Open an issue](https://github.com/bhushcodes/100-days-of-code-tracker/issues) - we're here to help!
 
