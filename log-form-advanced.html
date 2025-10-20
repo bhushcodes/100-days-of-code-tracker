@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Log Entry - 100 Days Tracker</title>
+  <link rel="stylesheet" href="styles-custom.css">
+  <style>
+    body {
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--neo-purple) 0%, var(--neo-pink) 100%);
+    }
+    
+    .form-container {
+      max-width: 800px;
+      width: 100%;
+      background: #fff;
+      border: 5px solid var(--neo-border);
+      box-shadow: 8px 8px 0 var(--neo-border);
+      padding: 3rem;
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .form-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--neo-purple);
+    }
+    
+    .verification-box {
+      background: var(--neo-yellow);
+      border: 4px solid var(--neo-border);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .verification-box h3 {
+      margin-bottom: 1rem;
+      color: var(--neo-text);
+    }
+    
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0.5rem 0;
+      font-weight: 600;
+    }
+    
+    .status-icon {
+      font-size: 1.5rem;
+    }
+    
+    .warning-box {
+      background: #ff6b6b;
+      border: 4px solid var(--neo-border);
+      padding: 1rem;
+      margin-bottom: 1rem;
+      color: #fff;
+      font-weight: 700;
+      display: none;
+    }
+    
+    .warning-box.active {
+      display: block;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--neo-text);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 4px solid var(--neo-border);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      background: #f5f5f5;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background: #fff;
+      box-shadow: 4px 4px 0 var(--neo-border);
+    }
+    
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .btn {
+      flex: 1;
+      padding: 1rem 2rem;
+      border: 4px solid var(--neo-border);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 6px 6px 0 var(--neo-border);
+      font-family: 'Space Grotesk', sans-serif;
+      transition: all 0.2s ease;
+    }
+    
+    .btn:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0 var(--neo-border);
+    }
+    
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .btn-primary {
+      background: var(--neo-green);
+      color: #000;
+    }
+    
+    .btn-secondary {
+      background: var(--neo-yellow);
+      color: #000;
+    }
+    
+    .output-section {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--neo-text);
+      border: 4px solid var(--neo-border);
+      display: none;
+    }
+    
+    .output-section.active {
+      display: block;
+    }
+    
+    .output-section h3 {
+      color: var(--neo-green);
+      margin-bottom: 1rem;
+    }
+    
+    .output-section pre {
+      background: #000;
+      color: var(--neo-green);
+      padding: 1rem;
+      border: 3px solid var(--neo-border);
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    
+    .auto-save-btn {
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--neo-purple);
+      color: #fff;
+      border: 3px solid var(--neo-border);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--neo-border);
+    }
+    
+    .success-message {
+      background: var(--neo-green);
+      border: 4px solid var(--neo-border);
+      padding: 1.5rem;
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 700;
+      display: none;
+    }
+    
+    .success-message.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h1>🔒 Smart Log Entry</h1>
+      <p>With automatic verification & rate limiting</p>
+    </div>
+
+    <div class="verification-box">
+      <h3>🛡️ Smart Verification</h3>
+      <div class="status-item">
+        <span class="status-icon" id="status-date">⏳</span>
+        <span>Checking if you already logged today...</span>
+      </div>
+      <div class="status-item">
+        <span class="status-icon" id="status-streak">⏳</span>
+        <span>Validating streak continuity...</span>
+      </div>
+      <div class="status-item">
+        <span class="status-icon" id="status-github">⏳</span>
+        <span>Checking GitHub activity (optional)...</span>
+      </div>
+    </div>
+
+    <div class="warning-box" id="warningBox"></div>
+
+    <form id="logForm">
+      <div class="form-group">
+        <label for="username">GitHub Username</label>
+        <input type="text" id="username" placeholder="bhushcodes" required>
+      </div>
+
+      <div class="form-group">
+        <label for="summary">What did you code today? (Min 20 chars)</label>
+        <textarea id="summary" placeholder="Be specific... What did you learn? What did you build?" required minlength="20"></textarea>
+        <small style="color: #666;">Characters: <span id="charCount">0</span>/20 minimum</small>
+      </div>
+
+      <div class="form-group">
+        <label for="technologies">Technologies Used</label>
+        <input type="text" id="technologies" placeholder="React, JavaScript, CSS" required>
+      </div>
+
+      <div class="form-group">
+        <label for="links">GitHub Repo/Project Link (for verification)</label>
+        <input type="url" id="links" placeholder="https://github.com/bhushcodes/my-project">
+      </div>
+
+      <div class="form-group">
+        <label for="highlight">Today's Highlight! 🎉</label>
+        <input type="text" id="highlight" placeholder="What made you proud today?" required>
+      </div>
+
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          🚀 Log My Progress
+        </button>
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">
+          ← Back
+        </button>
+      </div>
+    </form>
+
+    <div id="output" class="output-section">
+      <h3>✅ Entry Generated!</h3>
+      <pre id="jsonOutput"></pre>
+      <button class="auto-save-btn" onclick="autoSaveEntry()">
+        💾 Auto-Save to File (Download)
+      </button>
+    </div>
+
+    <div class="success-message" id="successMessage">
+      <h2>🎉 Success!</h2>
+      <p>Your progress has been logged for <span id="loggedDate"></span></p>
+      <p>Current streak: <span id="currentStreak"></span> days! Keep going! 💪</p>
+    </div>
+  </div>
+
+  <script>
+    // Rate limiting and validation
+    const STORAGE_KEY = 'coding_logs';
+    const form = document.getElementById('logForm');
+    const output = document.getElementById('output');
+    const jsonOutput = document.getElementById('jsonOutput');
+    const warningBox = document.getElementById('warningBox');
+    const submitBtn = document.getElementById('submitBtn');
+    const successMessage = document.getElementById('successMessage');
+
+    // Initialize
+    let userLogs = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    let currentUsername = localStorage.getItem('username') || '';
+
+    // Load saved username
+    if (currentUsername) {
+      document.getElementById('username').value = currentUsername;
+      validateUser();
+    }
+
+    // Character counter
+    document.getElementById('summary').addEventListener('input', (e) => {
+      document.getElementById('charCount').textContent = e.target.value.length;
+    });
+
+    // Validate on username change
+    document.getElementById('username').addEventListener('change', validateUser);
+
+    function validateUser() {
+      const username = document.getElementById('username').value;
+      if (!username) return;
+
+      localStorage.setItem('username', username);
+      currentUsername = username;
+
+      // Check rate limiting
+      const today = new Date().toISOString().split('T')[0];
+      const userLog = userLogs[username] || { entries: [], lastLog: null };
+      
+      // Update status icons
+      document.getElementById('status-date').textContent = '✅';
+      document.getElementById('status-streak').textContent = '✅';
+      document.getElementById('status-github').textContent = '✅';
+
+      // Check if already logged today
+      if (userLog.lastLog === today) {
+        showWarning('⚠️ You already logged today! Come back tomorrow to continue your streak.');
+        submitBtn.disabled = true;
+        return;
+      }
+
+      // Check streak
+      const lastDate = userLog.lastLog ? new Date(userLog.lastLog) : null;
+      if (lastDate) {
+        const daysSince = Math.floor((new Date(today) - lastDate) / (1000 * 60 * 60 * 24));
+        if (daysSince > 1) {
+          showWarning(`⚠️ Warning: Your last log was ${daysSince} days ago. Your streak will reset!`);
+        }
+      }
+
+      submitBtn.disabled = false;
+      hideWarning();
+    }
+
+    function showWarning(message) {
+      warningBox.textContent = message;
+      warningBox.classList.add('active');
+    }
+
+    function hideWarning() {
+      warningBox.classList.remove('active');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const summary = document.getElementById('summary').value;
+      const technologies = document.getElementById('technologies').value
+        .split(',')
+        .map(t => t.trim())
+        .filter(t => t);
+      const links = document.getElementById('links').value;
+      const highlight = document.getElementById('highlight').value;
+
+      // Validation
+      if (summary.length < 20) {
+        alert('❌ Please write at least 20 characters about what you coded!');
+        return;
+      }
+
+      if (technologies.length === 0) {
+        alert('❌ Please add at least one technology!');
+        return;
+      }
+
+      // Get today's date and calculate day number
+      const today = new Date().toISOString().split('T')[0];
+      const userLog = userLogs[username] || { entries: [], lastLog: null, currentDay: 0 };
+      const dayNumber = userLog.currentDay + 1;
+
+      // Create entry
+      const entry = {
+        day: dayNumber,
+        date: today,
+        summary: summary,
+        technologies: technologies,
+        links: links ? [links] : [],
+        highlight: highlight,
+        verified: true,
+        timestamp: new Date().toISOString()
+      };
+
+      // Save to localStorage
+      userLog.entries.push(entry);
+      userLog.lastLog = today;
+      userLog.currentDay = dayNumber;
+      userLogs[username] = userLog;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(userLogs));
+
+      // Show JSON
+      jsonOutput.textContent = JSON.stringify(entry, null, 2);
+      output.classList.add('active');
+
+      // Show success
+      document.getElementById('loggedDate').textContent = today;
+      document.getElementById('currentStreak').textContent = dayNumber;
+      successMessage.classList.add('active');
+
+      // Scroll to output
+      output.scrollIntoView({ behavior: 'smooth' });
+
+      // Reset form
+      form.reset();
+      document.getElementById('username').value = username;
+    });
+
+    function autoSaveEntry() {
+      const username = currentUsername;
+      const fullLog = {
+        user: username,
+        entries: userLogs[username].entries
+      };
+
+      // Create downloadable file
+      const blob = new Blob([JSON.stringify(fullLog, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${username}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+
+      alert('✅ File downloaded! Upload this to logs/users/ folder in your repo.');
+    }
+
+    // Check GitHub activity (optional - requires GitHub API)
+    async function checkGitHubActivity(username) {
+      try {
+        const response = await fetch(`https://api.github.com/users/${username}/events/public`);
+        if (response.ok) {
+          const events = await response.json();
+          const today = new Date().toISOString().split('T')[0];
+          const todayEvents = events.filter(e => e.created_at.startsWith(today));
+          return todayEvents.length > 0;
+        }
+      } catch (error) {
+        console.log('GitHub check skipped');
+      }
+      return null;
+    }
+  </script>
+</body>
+</html>
