@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto-Commit Logger - 100 Days Tracker</title>
+  <link rel="stylesheet" href="styles-custom.css">
+  <style>
+    body {
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--neo-purple) 0%, var(--neo-pink) 100%);
+    }
+    
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: #fff;
+      border: 5px solid var(--neo-border);
+      box-shadow: 8px 8px 0 var(--neo-border);
+      padding: 3rem;
+    }
+    
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .header h1 {
+      font-size: 2.5rem;
+      color: var(--neo-purple);
+      margin-bottom: 0.5rem;
+    }
+    
+    .setup-box {
+      background: var(--neo-yellow);
+      border: 4px solid var(--neo-border);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .setup-box h3 {
+      margin-bottom: 1rem;
+      color: var(--neo-text);
+    }
+    
+    .setup-box a {
+      color: var(--neo-purple);
+      font-weight: 700;
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 4px solid var(--neo-border);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      background: #f5f5f5;
+    }
+    
+    .form-group textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .status-box {
+      padding: 1rem;
+      border: 4px solid var(--neo-border);
+      margin-bottom: 1rem;
+      display: none;
+    }
+    
+    .status-box.active {
+      display: block;
+    }
+    
+    .status-box.success {
+      background: var(--neo-green);
+      color: #000;
+    }
+    
+    .status-box.error {
+      background: #ff6b6b;
+      color: #fff;
+    }
+    
+    .status-box.info {
+      background: var(--neo-cyan);
+      color: #000;
+    }
+    
+    .btn {
+      width: 100%;
+      padding: 1rem 2rem;
+      border: 4px solid var(--neo-border);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 6px 6px 0 var(--neo-border);
+      font-family: 'Space Grotesk', sans-serif;
+      transition: all 0.2s ease;
+      background: var(--neo-green);
+      color: #000;
+      margin-top: 1rem;
+    }
+    
+    .btn:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0 var(--neo-border);
+    }
+    
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .success-message {
+      background: var(--neo-green);
+      border: 4px solid var(--neo-border);
+      padding: 2rem;
+      text-align: center;
+      margin-top: 2rem;
+      display: none;
+    }
+    
+    .success-message.active {
+      display: block;
+    }
+    
+    .tech-suggestions {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+    
+    .tech-btn {
+      padding: 0.5rem 1rem;
+      background: var(--neo-cyan);
+      border: 3px solid var(--neo-border);
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+    
+    .tech-btn:hover {
+      background: var(--neo-yellow);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🚀 Auto-Commit Logger</h1>
+      <p>Log your progress directly to GitHub</p>
+    </div>
+
+    <div class="setup-box" id="setupBox">
+      <h3>🔑 First-Time Setup</h3>
+      <p><strong>You need a GitHub Personal Access Token (PAT)</strong></p>
+      <ol style="margin-left: 1.5rem;">
+        <li>Go to <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)</a></li>
+        <li>Click "Generate new token (classic)"</li>
+        <li>Give it a name: <code style="background:#000;color:#0f0;padding:0.2rem 0.5rem;">100-days-tracker</code></li>
+        <li>Select scopes: <strong>repo</strong> (Full control of private repositories)</li>
+        <li>Generate token and <strong>copy it</strong> (you won't see it again!)</li>
+        <li>Paste it below</li>
+      </ol>
+    </div>
+
+    <div class="status-box" id="statusBox"></div>
+
+    <form id="logForm">
+      <div class="form-group">
+        <label for="token">GitHub Personal Access Token 🔐</label>
+        <input type="password" id="token" placeholder="ghp_xxxxxxxxxxxx" required>
+        <small style="color: #666;">Stored securely in your browser only</small>
+      </div>
+
+      <div class="form-group">
+        <label for="username">Your GitHub Username</label>
+        <input type="text" id="username" placeholder="bhushcodes" required>
+      </div>
+
+      <div class="form-group">
+        <label for="repo">Repository Name</label>
+        <input type="text" id="repo" value="100-days-of-code-tracker" required>
+      </div>
+
+      <div class="form-group">
+        <label for="summary">What did you code today? (Min 20 chars)</label>
+        <textarea id="summary" placeholder="Be specific..." required minlength="20"></textarea>
+        <small style="color: #666;">Characters: <span id="charCount">0</span>/20</small>
+      </div>
+
+      <div class="form-group">
+        <label for="technologies">Technologies Used</label>
+        <input type="text" id="technologies" placeholder="React, JavaScript, CSS" required>
+        <div class="tech-suggestions" id="techSuggestions" style="display:none;">
+          <small style="width:100%;font-weight:700;margin-bottom:0.5rem;">💡 Quick add:</small>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="links">Project Link (optional)</label>
+        <input type="url" id="links" placeholder="https://github.com/bhushcodes/project">
+      </div>
+
+      <div class="form-group">
+        <label for="highlight">Today's Highlight! 🎉</label>
+        <input type="text" id="highlight" placeholder="What made you proud?" required>
+      </div>
+
+      <button type="submit" class="btn" id="submitBtn">
+        🚀 Log & Auto-Commit to GitHub
+      </button>
+    </form>
+
+    <div class="success-message" id="successMessage">
+      <h2>🎉 Success!</h2>
+      <p id="successText"></p>
+      <p><a href="index.html" style="color:var(--neo-purple);font-weight:700;">← Back to Dashboard</a></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('logForm');
+    const statusBox = document.getElementById('statusBox');
+    const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
+    const setupBox = document.getElementById('setupBox');
+
+    // Common tech suggestions
+    const commonTechs = ['JavaScript', 'Python', 'React', 'TypeScript', 'Node.js', 'HTML', 'CSS', 'Git'];
+
+    // Load saved data
+    const savedToken = localStorage.getItem('github_token');
+    const savedUsername = localStorage.getItem('username');
+    const savedRepo = localStorage.getItem('repo');
+
+    if (savedToken) {
+      document.getElementById('token').value = savedToken;
+      setupBox.style.display = 'none';
+    }
+    if (savedUsername) document.getElementById('username').value = savedUsername;
+    if (savedRepo) document.getElementById('repo').value = savedRepo;
+
+    // Character counter
+    document.getElementById('summary').addEventListener('input', (e) => {
+      document.getElementById('charCount').textContent = e.target.value.length;
+    });
+
+    // Show tech suggestions
+    const techSuggestionsDiv = document.getElementById('techSuggestions');
+    commonTechs.forEach(tech => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tech-btn';
+      btn.textContent = tech;
+      btn.onclick = () => {
+        const input = document.getElementById('technologies');
+        const current = input.value.trim();
+        if (current) {
+          const techs = current.split(',').map(t => t.trim());
+          if (!techs.includes(tech)) {
+            input.value = current + ', ' + tech;
+          }
+        } else {
+          input.value = tech;
+        }
+      };
+      techSuggestionsDiv.appendChild(btn);
+    });
+    techSuggestionsDiv.style.display = 'flex';
+
+    function showStatus(message, type = 'info') {
+      statusBox.textContent = message;
+      statusBox.className = `status-box active ${type}`;
+      statusBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function hideStatus() {
+      statusBox.classList.remove('active');
+    }
+
+    async function getFileContent(token, username, repo, path) {
+      const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+      const response = await fetch(url, {
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      
+      if (response.status === 404) {
+        return null; // File doesn't exist
+      }
+      
+      if (!response.ok) {
+        throw new Error(`GitHub API error: ${response.status}`);
+      }
+      
+      const data = await response.json();
+      const content = atob(data.content);
+      return { content: JSON.parse(content), sha: data.sha };
+    }
+
+    async function updateFile(token, username, repo, path, content, message, sha = null) {
+      const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+      const body = {
+        message: message,
+        content: btoa(JSON.stringify(content, null, 2))
+      };
+      
+      if (sha) {
+        body.sha = sha;
+      }
+      
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${token}`,
+          'Accept': 'application/vnd.github.v3+json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+      });
+      
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Failed to update file');
+      }
+      
+      return await response.json();
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const token = document.getElementById('token').value.trim();
+      const username = document.getElementById('username').value.trim();
+      const repo = document.getElementById('repo').value.trim();
+      const summary = document.getElementById('summary').value.trim();
+      const technologies = document.getElementById('technologies').value
+        .split(',')
+        .map(t => t.trim())
+        .filter(t => t);
+      const links = document.getElementById('links').value.trim();
+      const highlight = document.getElementById('highlight').value.trim();
+
+      // Validation
+      if (summary.length < 20) {
+        showStatus('❌ Summary must be at least 20 characters!', 'error');
+        return;
+      }
+
+      if (technologies.length === 0) {
+        showStatus('❌ Please add at least one technology!', 'error');
+        return;
+      }
+
+      // Save credentials
+      localStorage.setItem('github_token', token);
+      localStorage.setItem('username', username);
+      localStorage.setItem('repo', repo);
+      setupBox.style.display = 'none';
+
+      submitBtn.disabled = true;
+      showStatus('⏳ Connecting to GitHub...', 'info');
+
+      try {
+        // Get current user log file
+        const logPath = `logs/users/${username}.json`;
+        showStatus('⏳ Reading your log file...', 'info');
+        
+        let logData = null;
+        let fileSha = null;
+        
+        try {
+          const fileData = await getFileContent(token, username, repo, logPath);
+          if (fileData) {
+            logData = fileData.content;
+            fileSha = fileData.sha;
+          }
+        } catch (error) {
+          console.log('File does not exist, will create new one');
+        }
+
+        // Create new log if doesn't exist
+        if (!logData) {
+          logData = {
+            user: username,
+            entries: []
+          };
+        }
+
+        // Check if already logged today
+        const today = new Date().toISOString().split('T')[0];
+        const alreadyLogged = logData.entries.some(entry => entry.date === today);
+        
+        if (alreadyLogged) {
+          showStatus('❌ You already logged today! Come back tomorrow.', 'error');
+          submitBtn.disabled = false;
+          return;
+        }
+
+        // Create new entry
+        const dayNumber = logData.entries.length + 1;
+        const newEntry = {
+          day: dayNumber,
+          date: today,
+          summary: summary,
+          technologies: technologies,
+          links: links ? [links] : [],
+          highlight: highlight,
+          timestamp: new Date().toISOString()
+        };
+
+        // Add entry
+        logData.entries.push(newEntry);
+
+        // Commit to GitHub
+        showStatus('⏳ Committing to GitHub...', 'info');
+        await updateFile(
+          token,
+          username,
+          repo,
+          logPath,
+          logData,
+          `Day ${dayNumber}: ${username} logged progress`,
+          fileSha
+        );
+
+        // Success!
+        hideStatus();
+        form.style.display = 'none';
+        successMessage.classList.add('active');
+        document.getElementById('successText').innerHTML = `
+          <strong>Day ${dayNumber} logged successfully!</strong><br>
+          🔥 Current streak: ${dayNumber} days<br>
+          💪 ${100 - dayNumber} days to go!<br><br>
+          <a href="https://github.com/${username}/${repo}" target="_blank" style="color:var(--neo-purple);">
+            View on GitHub →
+          </a>
+        `;
+
+        // Reset form
+        document.getElementById('summary').value = '';
+        document.getElementById('technologies').value = '';
+        document.getElementById('links').value = '';
+        document.getElementById('highlight').value = '';
+
+      } catch (error) {
+        console.error('Error:', error);
+        showStatus(`❌ Error: ${error.message}`, 'error');
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
