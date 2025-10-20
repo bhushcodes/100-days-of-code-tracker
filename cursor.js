@@ -14,6 +14,17 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
+    
+    // Check if hovering over clickable element
+    const target = e.target;
+    const clickableSelector = 'a, button, .button, .how-it-works-card, .feature-card, .toggle-slider, [role="button"], input[type="submit"], input[type="button"], .github-login-btn';
+    
+    // Check if target or any parent is clickable
+    if (target.matches(clickableSelector) || target.closest(clickableSelector)) {
+      cursor.classList.add('hover');
+    } else {
+      cursor.classList.remove('hover');
+    }
   });
 
   // Smooth cursor movement
@@ -29,35 +40,4 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(animate);
   }
   animate();
-
-  // Add hover effect for clickable elements
-  const clickableElements = 'a, button, .button, .how-it-works-card, .feature-card, .toggle-slider, [role="button"], svg, input[type="submit"], input[type="button"], .github-login-btn';
-  
-  document.querySelectorAll(clickableElements).forEach(element => {
-    element.addEventListener('mouseenter', () => {
-      cursor.classList.add('hover');
-    });
-    
-    element.addEventListener('mouseleave', () => {
-      cursor.classList.remove('hover');
-    });
-  });
-
-  // Re-apply hover listeners for dynamically added elements
-  const observer = new MutationObserver(() => {
-    document.querySelectorAll(clickableElements).forEach(element => {
-      element.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
-      });
-      
-      element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
-      });
-    });
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
 });
