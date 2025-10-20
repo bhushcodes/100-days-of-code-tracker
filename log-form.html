@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log Your Progress - 100 Days of Code Tracker</title>
+  <link rel="stylesheet" href="styles-custom.css">
+  <style>
+    body {
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--neo-purple) 0%, var(--neo-pink) 100%);
+    }
+    
+    .form-container {
+      max-width: 800px;
+      width: 100%;
+      background: #fff;
+      border: 5px solid var(--neo-border);
+      box-shadow: 8px 8px 0 var(--neo-border);
+      padding: 3rem;
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .form-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--neo-purple);
+    }
+    
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: var(--neo-text);
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 4px solid var(--neo-border);
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      background: #f5f5f5;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      background: #fff;
+      box-shadow: 4px 4px 0 var(--neo-border);
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    
+    .btn {
+      flex: 1;
+      padding: 1rem 2rem;
+      border: 4px solid var(--neo-border);
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      box-shadow: 6px 6px 0 var(--neo-border);
+      font-family: 'Space Grotesk', sans-serif;
+    }
+    
+    .btn:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px 0 var(--neo-border);
+    }
+    
+    .btn-primary {
+      background: var(--neo-green);
+      color: #000;
+    }
+    
+    .btn-secondary {
+      background: var(--neo-yellow);
+      color: #000;
+    }
+    
+    .output-section {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background: var(--neo-text);
+      border: 4px solid var(--neo-border);
+      display: none;
+    }
+    
+    .output-section.active {
+      display: block;
+    }
+    
+    .output-section h3 {
+      color: var(--neo-green);
+      margin-bottom: 1rem;
+    }
+    
+    .output-section pre {
+      background: #000;
+      color: var(--neo-green);
+      padding: 1rem;
+      border: 3px solid var(--neo-border);
+      overflow-x: auto;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    
+    .copy-btn {
+      margin-top: 1rem;
+      padding: 0.8rem 1.5rem;
+      background: var(--neo-cyan);
+      border: 3px solid var(--neo-border);
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--neo-border);
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h1>📝 Log Your Day</h1>
+      <p>Quick and easy progress tracking</p>
+    </div>
+
+    <form id="logForm">
+      <div class="form-group">
+        <label for="username">Your GitHub Username</label>
+        <input type="text" id="username" placeholder="bhushcodes" required>
+      </div>
+
+      <div class="form-group">
+        <label for="day">Day Number</label>
+        <input type="number" id="day" placeholder="1" min="1" max="100" required>
+      </div>
+
+      <div class="form-group">
+        <label for="summary">What did you code today?</label>
+        <textarea id="summary" placeholder="Built a React component, learned about hooks..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="technologies">Technologies (comma-separated)</label>
+        <input type="text" id="technologies" placeholder="React, JavaScript, CSS">
+      </div>
+
+      <div class="form-group">
+        <label for="links">Project Link (optional)</label>
+        <input type="url" id="links" placeholder="https://github.com/bhushcodes/my-project">
+      </div>
+
+      <div class="form-group">
+        <label for="highlight">Your Best Moment Today! 🎉</label>
+        <input type="text" id="highlight" placeholder="Finally understood how useEffect works!">
+      </div>
+
+      <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Generate JSON</button>
+        <button type="button" class="btn btn-secondary" onclick="window.location.href='index.html'">Back to Home</button>
+      </div>
+    </form>
+
+    <div id="output" class="output-section">
+      <h3>✅ Your JSON Entry</h3>
+      <pre id="jsonOutput"></pre>
+      <button class="copy-btn" onclick="copyToClipboard()">📋 Copy to Clipboard</button>
+      <p style="margin-top: 1rem; color: var(--neo-green); font-weight: 700;">
+        ✅ Copied! Now paste this into your logs/users/[username].json file
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('logForm');
+    const output = document.getElementById('output');
+    const jsonOutput = document.getElementById('jsonOutput');
+
+    // Load saved username
+    const savedUsername = localStorage.getItem('username');
+    if (savedUsername) {
+      document.getElementById('username').value = savedUsername;
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const username = document.getElementById('username').value;
+      const day = parseInt(document.getElementById('day').value);
+      const summary = document.getElementById('summary').value;
+      const technologies = document.getElementById('technologies').value
+        .split(',')
+        .map(t => t.trim())
+        .filter(t => t);
+      const links = document.getElementById('links').value;
+      const highlight = document.getElementById('highlight').value;
+
+      // Save username for next time
+      localStorage.setItem('username', username);
+
+      // Get today's date
+      const today = new Date().toISOString().split('T')[0];
+
+      // Create JSON entry
+      const entry = {
+        day: day,
+        date: today,
+        summary: summary,
+        technologies: technologies.length > 0 ? technologies : ['Coding'],
+        links: links ? [links] : [],
+        highlight: highlight || 'Another day of progress!'
+      };
+
+      // Show formatted JSON
+      jsonOutput.textContent = JSON.stringify(entry, null, 2);
+      output.classList.add('active');
+      output.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    function copyToClipboard() {
+      const text = jsonOutput.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('✅ Copied to clipboard! Now paste it into your JSON file.');
+      });
+    }
+  </script>
+</body>
+</html>
