@@ -1083,7 +1083,7 @@ body {
   }
   
   .features-title {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
     margin-bottom: 2rem !important;
   }
   
@@ -1097,11 +1097,37 @@ body {
   }
   
   .feature-card h3 {
-    font-size: 1.1rem !important;
+    font-size: 1.05rem !important;
   }
   
   .feature-card div[style*="font-size: 4rem"] {
-    font-size: 3rem !important;
+    font-size: 2.5rem !important;
+  }
+  
+  /* How It Works Section */
+  .how-it-works-card {
+    padding: 1.5rem !important;
+  }
+  
+  .how-it-works-card h3 {
+    font-size: 1.1rem !important;
+  }
+  
+  .how-it-works-card p {
+    font-size: 0.85rem !important;
+  }
+  
+  .how-it-works-card div[style*="font-size: 4rem"] {
+    font-size: 2.5rem !important;
+  }
+  
+  .how-it-works-card div[style*="font-size: 1.5rem"] {
+    font-size: 1.2rem !important;
+  }
+  
+  /* Section Headings */
+  section h2 {
+    font-size: 1.8rem !important;
   }
   
   .card-leaderboard {
@@ -1289,7 +1315,7 @@ body {
   }
   
   .features-title {
-    font-size: 1.5rem !important;
+    font-size: 1.4rem !important;
     margin-bottom: 1.5rem !important;
   }
   
@@ -1300,16 +1326,46 @@ body {
   
   .feature-card {
     min-width: 100%;
-    padding: 1.2rem 0.8rem !important;
+    padding: 1rem 0.8rem !important;
   }
   
   .feature-card h3 {
-    font-size: 1rem !important;
+    font-size: 0.95rem !important;
   }
   
   .feature-card div[style*="font-size: 4rem"] {
-    font-size: 2.5rem !important;
+    font-size: 2rem !important;
     margin-bottom: 0.5rem !important;
+  }
+  
+  /* How It Works - Small Mobile */
+  .how-it-works-card {
+    padding: 1.2rem !important;
+  }
+  
+  .how-it-works-card h3 {
+    font-size: 1rem !important;
+  }
+  
+  .how-it-works-card p {
+    font-size: 0.8rem !important;
+  }
+  
+  .how-it-works-card div[style*="font-size: 4rem"] {
+    font-size: 2rem !important;
+  }
+  
+  .how-it-works-card div[style*="font-size: 1.5rem"] {
+    font-size: 1.1rem !important;
+  }
+  
+  /* All Section Headings */
+  section h2 {
+    font-size: 1.5rem !important;
+  }
+  
+  .icon {
+    font-size: 1.8rem !important;
   }
   
   /* Better table on small screens */
@@ -1346,7 +1402,7 @@ body {
   }
   
   .features-title {
-    font-size: 1.3rem !important;
+    font-size: 1.2rem !important;
   }
   
   .features-grid {
@@ -1354,15 +1410,45 @@ body {
   }
   
   .feature-card {
-    padding: 1rem 0.7rem !important;
+    padding: 0.9rem 0.7rem !important;
   }
   
   .feature-card h3 {
-    font-size: 0.9rem !important;
+    font-size: 0.85rem !important;
   }
   
   .feature-card div[style*="font-size: 4rem"] {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
+  }
+  
+  /* How It Works - Extra Small */
+  .how-it-works-card {
+    padding: 1rem !important;
+  }
+  
+  .how-it-works-card h3 {
+    font-size: 0.95rem !important;
+  }
+  
+  .how-it-works-card p {
+    font-size: 0.75rem !important;
+  }
+  
+  .how-it-works-card div[style*="font-size: 4rem"] {
+    font-size: 1.8rem !important;
+  }
+  
+  .how-it-works-card div[style*="font-size: 1.5rem"] {
+    font-size: 1rem !important;
+  }
+  
+  /* Section Headings */
+  section h2 {
+    font-size: 1.3rem !important;
+  }
+  
+  .icon {
+    font-size: 1.5rem !important;
   }
 }
 
