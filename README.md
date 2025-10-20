@@ -27,42 +27,39 @@ Check out the live leaderboard: **[100-days-of-code-tracker.netlify.app](https:/
 
 ## 🚀 How to Join the Challenge
 
-### **Step 1: Fork This Repository**
+### **Option 1: Quick Start with OAuth (Recommended)** 🚀
 
-1. Click the **"Fork"** button at the top right of this page
-2. This creates your own copy of the tracker
+1. **Visit the Website**: [100-days-of-code-tracker.netlify.app](https://100-days-of-code-tracker.netlify.app/)
+2. **Click "Login with GitHub"** - Secure OAuth authentication
+3. **Authorize the app** - We only need access to create files in your repo
+4. **Start logging!** - Simple web form to track your daily progress
 
-### **Step 2: Clone Your Forked Repository**
+**Benefits:**
+- ✅ No manual setup required
+- ✅ Automatic commits to your repository
+- ✅ Beautiful web interface
+- ✅ Instant updates to leaderboard
+
+---
+
+### **Option 2: Manual Setup (For Advanced Users)** 💻
+
+#### **Step 1: Fork & Clone**
 
 ```bash
-# Replace YOUR-USERNAME with your GitHub username
 git clone https://github.com/YOUR-USERNAME/100-days-of-code-tracker.git
 cd 100-days-of-code-tracker
 ```
 
-**Example:** If your username is `bhushcodes`:
-```bash
-git clone https://github.com/bhushcodes/100-days-of-code-tracker.git
-cd 100-days-of-code-tracker
-```
-
-### **Step 3: Create Your Log File**
+#### **Step 2: Create Your Log File**
 
 ```bash
-# Replace 'your-username' with your GitHub username
 cp templates/user-log-template.json logs/users/your-username.json
 ```
 
-**Example:** If your username is `bhushcodes`:
-```bash
-cp templates/user-log-template.json logs/users/bhushcodes.json
-```
+#### **Step 3: Add Your First Entry**
 
-### **Step 4: Edit Your Log File**
-
-Open `logs/users/your-username.json` in any text editor (VS Code, Sublime, Notepad++, etc.)
-
-**Add your first entry:**
+Edit `logs/users/your-username.json`:
 
 ```json
 {
@@ -71,84 +68,64 @@ Open `logs/users/your-username.json` in any text editor (VS Code, Sublime, Notep
     {
       "day": 1,
       "date": "2025-10-20",
-      "summary": "Started my 100 Days of Code journey! Set up my environment and learned about...",
+      "summary": "Started my 100 Days of Code journey!",
       "technologies": ["JavaScript", "Git"],
-      "links": ["https://github.com/your-username/my-first-project"],
-      "highlight": "Completed my first coding challenge! 🎉"
+      "links": ["https://github.com/your-username/my-project"],
+      "highlight": "Completed my first challenge! 🎉"
     }
   ]
 }
 ```
 
-**Important:**
-- ✅ Use **today's date** in `YYYY-MM-DD` format
-- ✅ Replace `"your-username"` with your actual GitHub username
-- ✅ Fill in what you learned/built today
-- ✅ Add technologies you used
-- ✅ Share your best moment in the `highlight` field
-
-### **Step 5: Update the Leaderboard**
+#### **Step 4: Update Leaderboard & Push**
 
 ```bash
-# Run the Python script to update rankings
 python3 scripts/update_leaderboard.py
-```
-
-**What this does:**
-- ✅ Reads all user logs
-- ✅ Calculates your streaks
-- ✅ Updates the leaderboard rankings
-- ✅ Generates the website data
-
-### **Step 6: Commit and Push Your Changes**
-
-```bash
-git add logs/users/your-username.json data/ website/data/
-git commit -m "Day 1: Started my coding journey!"
+git add -A
+git commit -m "Day 1: Started my journey!"
 git push origin main
 ```
 
-**Example:** If your username is `bhushcodes`:
-```bash
-git add logs/users/bhushcodes.json data/ website/data/
-git commit -m "Day 1: Started my coding journey!"
-git push origin main
-```
+#### **Step 5: Submit Pull Request**
 
-### **Step 7: Open a Pull Request (Optional)**
-
-If you want to add your progress to the main leaderboard:
-
-1. Go to your forked repository on GitHub
-2. Click **"Pull requests"** tab
-3. Click **"New pull request"**
-4. Add a title: `Add [your-username] - Day 1` (Example: `Add bhushcodes - Day 1`)
-5. Submit the pull request
+Open a PR to add your progress to the main leaderboard!
 
 ---
 
 ## 📝 Logging Daily Progress
 
-**Every day, add a new entry to your log file:**
+### **Via Web Interface (Easiest)** 🌐
+
+1. Go to [100-days-of-code-tracker.netlify.app](https://100-days-of-code-tracker.netlify.app/)
+2. Login with GitHub
+3. Fill out the daily log form
+4. Click submit - Done! ✨
+
+**Your progress automatically:**
+- ✅ Saves to your GitHub repository
+- ✅ Updates the leaderboard
+- ✅ Calculates your streak
+- ✅ Commits with a clean message
+
+### **Via Manual Edit** 💻
+
+Add to your `logs/users/your-username.json`:
 
 ```json
 {
   "day": 2,
   "date": "2025-10-21",
-  "summary": "Built a todo app with React hooks. Learned about useState and useEffect.",
-  "technologies": ["React", "JavaScript", "CSS"],
+  "summary": "Built a React todo app",
+  "technologies": ["React", "JavaScript"],
   "links": ["https://github.com/your-username/react-todo"],
-  "highlight": "Finally understood how useEffect cleanup works! 💡"
+  "highlight": "useEffect cleanup finally clicked! 💡"
 }
 ```
 
-**Then update and push:**
-
+Then:
 ```bash
 python3 scripts/update_leaderboard.py
-git add -A
-git commit -m "Day 2: Built a React todo app"
-git push origin main
+git add -A && git commit -m "Day 2: React todo app" && git push
 ```
 
 ---
@@ -182,46 +159,69 @@ git push origin main
 
 ---
 
-## 📁 What's Inside?
+## 📁 Project Structure
 
 ```text
 100-days-of-code-tracker/
-├── 📄 README.md              # You are here!
-├── 📄 CONTRIBUTING.md        # How to contribute
-├── 📄 LICENSE                # MIT License
-├── 🐍 scripts/
-│   └── update_leaderboard.py # Updates rankings and stats
-├── 📊 data/
-│   └── leaderboard.json      # Generated leaderboard data
-├── 📝 logs/
-│   └── users/                # All user logs go here
-│       └── bhushcodes.json
-├── 📋 templates/             # Templates to get you started
-│   ├── user-log-template.json
-│   └── daily-log-template.md
-└── 🌐 Website files          # The beautiful UI
-    ├── index.html
-    ├── styles-custom.css
-    └── app-enhanced.js
+├── 📄 README.md                  # You are here!
+├── 📄 OAUTH_SETUP.md             # OAuth setup guide
+├── 📄 CONTRIBUTING.md            # Contribution guidelines
+├── 📄 LICENSE                    # MIT License
+│
+├── 🌐 Website (Frontend)
+│   ├── index.html                # Main leaderboard
+│   ├── styles-custom.css         # Neobrutalism styling
+│   ├── app-enhanced.js           # Interactive features
+│   ├── log-oauth-login.html      # OAuth login page
+│   ├── log-oauth.html            # Logging interface
+│   └── log-form-advanced.html    # Advanced logging form
+│
+├── ⚡ Netlify Functions
+│   └── netlify/functions/
+│       ├── auth-start.js         # OAuth flow start
+│       └── auth-callback.js      # OAuth callback handler
+│
+├── 🐍 Scripts
+│   └── scripts/
+│       └── update_leaderboard.py # Leaderboard generator
+│
+├── 📊 Data
+│   ├── data/leaderboard.json     # Generated rankings
+│   └── logs/users/               # User progress logs
+│       └── *.json                # Individual user files
+│
+└── 📋 Templates
+    ├── user-log-template.json    # Log file template
+    └── daily-log-template.md     # Daily entry template
 ```
 
 ---
 
-## 🎨 The Design
+## 🎨 Design & Tech Stack
 
-We went with **Neobrutalism** because:
-- 🎯 **Bold & Eye-Catching** - Thick borders, bright colors, brutal shadows
-- 💥 **Energizing** - Makes coding feel exciting!
-- 🎪 **Fun** - Why should design be serious?
-- 🚀 **Modern Retro** - 90s nostalgia meets 2025
+### **Neobrutalism UI** 🎨
+Why we chose this bold aesthetic:
+- 🎯 **Eye-Catching** - Thick borders, bright colors, brutal shadows
+- 💥 **Energizing** - Makes you WANT to code!
+- 🎪 **Fun** - Because coding shouldn't be boring
+- 🚀 **Modern Retro** - 90s meets 2025
 
-**Features:**
-- Animated particle background
-- Smooth scroll between sections
-- Interactive toggle for active users
-- Toast notifications
-- Full-screen sections
-- Mobile-friendly
+### **Features** ✨
+- 🌟 Animated particle background
+- 📜 Smooth full-screen scrolling
+- 🔄 Real-time leaderboard updates
+- 🎯 Interactive user toggles
+- 📱 Fully responsive design
+- 🔔 Toast notifications
+- 🔐 Secure OAuth authentication
+
+### **Tech Stack** 💻
+- **Frontend**: HTML5, CSS3, Vanilla JavaScript
+- **Styling**: Neobrutalism + NES.css + Custom CSS
+- **Backend**: Netlify Serverless Functions
+- **Auth**: GitHub OAuth 2.0
+- **Hosting**: Netlify (with automatic deploys)
+- **Data**: JSON files (Git-based storage)
 
 ---
 
@@ -246,13 +246,24 @@ Check out [`CONTRIBUTING.md`](CONTRIBUTING.md) for guidelines.
 
 ## 🗺️ Roadmap
 
+**Current Features:**
+- ✅ OAuth GitHub login
+- ✅ Real-time leaderboard
+- ✅ Streak tracking
+- ✅ Web-based logging interface
+- ✅ Automatic GitHub commits
+- ✅ Responsive design
+- ✅ Neobrutalism UI
+
 **Coming Soon:**
-- [ ] GitHub Actions for auto-updates
-- [ ] Calendar heatmap view
-- [ ] Achievement badges
-- [ ] Weekly/Monthly stats
+- [ ] GitHub Actions auto-updates
+- [ ] Calendar heatmap visualization
+- [ ] Achievement badges system
+- [ ] Weekly/Monthly statistics
 - [ ] Dark mode toggle
-- [ ] Export data as PDF
+- [ ] Export progress as PDF
+- [ ] API for third-party integrations
+- [ ] Mobile app (React Native)
 
 **Have an idea?** [Open an issue](https://github.com/bhushcodes/100-days-of-code-tracker/issues)!
 
