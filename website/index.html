@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>100 Days of Code Tracker 💻</title>
+    <!-- Neobrutalism CSS Framework -->
+    <link href="https://unpkg.com/nes.css@2.3.0/css/nes.min.css" rel="stylesheet" />
+    <link href="https://unpkg.com/@picocss/pico@1.5.10/css/pico.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Animate.css for animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="styles-custom.css" />
+  </head>
+  <body>
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+    
+    <!-- Floating decorative elements -->
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <header class="hero">
+      <div class="hero__inner">
+        <h1 class="animate__animated animate__fadeInUp">
+          <span class="terminal-prompt typing-effect">&gt;_</span> 
+          <span class="typing-text">100 Days of Code</span>
+        </h1>
+        <p class="hero-subtitle">
+          <span class="highlight-text">Ship code daily</span> • 
+          <span class="highlight-text">Build in public</span> • 
+          <span class="highlight-text">Level up together</span>
+        </p>
+        <div class="button-group">
+          <a class="button button-primary" href="https://github.com/" target="_blank" rel="noreferrer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            Star on GitHub
+          </a>
+          <a class="button button-secondary" href="#get-started">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+            Start Coding
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- Stats Section -->
+      <section class="card card-stats nes-container is-rounded animate__animated animate__fadeInUp" id="stats">
+        <div class="card-header-fancy">
+          <h2>
+            <span class="icon">📊</span>
+            Community Stats
+          </h2>
+          <div class="status-indicator">
+            <span class="status-dot"></span>
+            <span>Live Data</span>
+          </div>
+        </div>
+        <dl class="stat-grid">
+          <div class="stat-card stat-card-1 nes-container is-rounded hover-lift">
+            <dt>Developers</dt>
+            <dd id="participant-count" class="counter" data-count="0">0</dd>
+            <div class="stat-icon">👥</div>
+            <div class="progress-ring" data-progress="75"></div>
+          </div>
+          <div class="stat-card stat-card-2 nes-container is-rounded hover-lift">
+            <dt>Days Coded</dt>
+            <dd id="total-days" class="counter" data-count="0">0</dd>
+            <div class="stat-icon">💻</div>
+            <div class="progress-ring" data-progress="90"></div>
+          </div>
+          <div class="stat-card stat-card-3 nes-container is-rounded hover-lift">
+            <dt>Last Update</dt>
+            <dd id="last-updated" class="text-small">-</dd>
+            <div class="stat-icon">⚡</div>
+            <div class="pulse-indicator"></div>
+          </div>
+        </dl>
+      </section>
+
+      <!-- Leaderboard Section -->
+      <section class="card card-leaderboard nes-container is-rounded animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+        <div class="card__header">
+          <h2>
+            <span class="icon">🏆</span>
+            Leaderboard
+          </h2>
+          <label class="toggle-switch">
+            <input type="checkbox" id="active-only" />
+            <span class="toggle-slider"></span>
+            <span class="toggle-label">Active Only 🔥</span>
+          </label>
+        </div>
+        <div class="table-wrapper">
+          <table id="leaderboard-table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  <div class="th-content">#</div>
+                </th>
+                <th scope="col">
+                  <div class="th-content">Developer</div>
+                </th>
+                <th scope="col">
+                  <div class="th-content">Days</div>
+                </th>
+                <th scope="col">
+                  <div class="th-content">Current 🔥</div>
+                </th>
+                <th scope="col">
+                  <div class="th-content">Best 🚀</div>
+                </th>
+                <th scope="col">
+                  <div class="th-content">Last Commit</div>
+                </th>
+                <th scope="col">
+                  <div class="th-content">Status</div>
+                </th>
+                <th scope="col">
+                  <div class="th-content">Highlight</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="8" class="empty">
+                  <div class="loading-spinner"></div>
+                  Loading entries…
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Get Started Section -->
+      <section class="card card-cta nes-container is-rounded animate__animated animate__fadeInUp" id="get-started" style="animation-delay: 0.4s;">
+        <div class="cta-header">
+          <h2>
+            <span class="icon">🚀</span>
+            Join the Challenge
+          </h2>
+          <div class="code-snippet">
+            <code class="terminal-text">$ git commit -m "Day 1" <span class="cursor-blink">_</span></code>
+          </div>
+        </div>
+        <ol class="steps-list">
+          <li>
+            <span class="step-number">01</span>
+            <div class="step-content">
+              <strong>Fork & Clone</strong>
+              <p>Fork the repository and copy the log template</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">02</span>
+            <div class="step-content">
+              <strong>Document Progress</strong>
+              <p>Log your daily progress in JSON format</p>
+            </div>
+          </li>
+          <li>
+            <span class="step-number">03</span>
+            <div class="step-content">
+              <strong>Submit PR</strong>
+              <p>Run the leaderboard script and open a pull request</p>
+            </div>
+          </li>
+        </ol>
+        <div class="info-box">
+          <span class="info-icon">ℹ️</span>
+          <p>
+            The dashboard auto-updates from
+            <code class="inline-code">website/data/leaderboard.json</code>
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <p>
+          Built with <span class="heart">❤️</span> by the dev community
+        </p>
+        <div class="tech-stack">
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">JSON</span>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app-enhanced.js" defer></script>
+  </body>
+</html>

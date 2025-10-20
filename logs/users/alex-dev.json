@@ -1,0 +1,40 @@
+{
+  "user": "alex-dev",
+  "entries": [
+    {
+      "day": 1,
+      "date": "2024-05-01",
+      "summary": "Set up the project skeleton and planned the first week of tasks.",
+      "technologies": ["Markdown", "Git"],
+      "links": ["https://www.100daysofcode.com"]
+    },
+    {
+      "day": 2,
+      "date": "2024-05-02",
+      "summary": "Built a simple CLI prototype for logging progress locally.",
+      "technologies": ["Python"],
+      "links": []
+    },
+    {
+      "day": 3,
+      "date": "2024-05-03",
+      "summary": "Refined the CLI and added JSON export capabilities.",
+      "technologies": ["Python", "Click"],
+      "links": ["https://github.com/pallets/click"]
+    },
+    {
+      "day": 4,
+      "date": "2024-05-05",
+      "summary": "Documented the workflow and shared it with accountability partners.",
+      "technologies": ["Markdown"],
+      "links": []
+    },
+    {
+      "day": 5,
+      "date": "2024-05-06",
+      "summary": "Shipped a blog post summarizing learnings from the first week.",
+      "technologies": ["Hugo"],
+      "links": ["https://alex.dev/blog/100-days-week-1"]
+    }
+  ]
+}

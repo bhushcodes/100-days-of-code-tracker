@@ -1,0 +1,47 @@
+{
+  "user": "riley-codes",
+  "entries": [
+    {
+      "day": 1,
+      "date": "2024-04-15",
+      "summary": "Completed an HTML/CSS landing page refresher.",
+      "technologies": ["HTML", "CSS"],
+      "links": ["https://developer.mozilla.org"]
+    },
+    {
+      "day": 2,
+      "date": "2024-04-16",
+      "summary": "Followed a Flexbox tutorial and rebuilt components responsively.",
+      "technologies": ["CSS"],
+      "links": ["https://flexboxfroggy.com"]
+    },
+    {
+      "day": 3,
+      "date": "2024-04-18",
+      "summary": "Practiced JavaScript DOM manipulation with small widgets.",
+      "technologies": ["JavaScript"],
+      "links": []
+    },
+    {
+      "day": 4,
+      "date": "2024-04-19",
+      "summary": "Deployed the mini project to GitHub Pages and wrote a recap thread.",
+      "technologies": ["JavaScript", "GitHub Pages"],
+      "links": ["https://riley.codes/projects/mini-widget"]
+    },
+    {
+      "day": 5,
+      "date": "2024-04-20",
+      "summary": "Joined a community pair-programming session and fixed layout bugs.",
+      "technologies": ["CSS", "JavaScript"],
+      "links": []
+    },
+    {
+      "day": 6,
+      "date": "2024-04-21",
+      "summary": "Documented learnings and next steps in a public gist.",
+      "technologies": ["Markdown"],
+      "links": ["https://gist.github.com/riley-codes/100days-notes"]
+    }
+  ]
+}

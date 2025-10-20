@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 100 Days of Code Tracker Discussions
+    url: https://github.com/<owner>/100-Days-of-Code-Tracker/discussions
+    about: Chat with the community, share wins, and ask for help

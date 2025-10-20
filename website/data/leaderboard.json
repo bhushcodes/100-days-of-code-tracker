@@ -1,0 +1,27 @@
+{
+  "generated_at": "2025-10-20T10:48:07+00:00",
+  "users": [
+    {
+      "user": "riley-codes",
+      "total_days": 6,
+      "current_streak": 4,
+      "longest_streak": 4,
+      "active_streak": false,
+      "last_update": "2024-04-21",
+      "first_day": "2024-04-15",
+      "highlight": "Documented learnings and next steps in a public gist.",
+      "days_since_update": 547
+    },
+    {
+      "user": "alex-dev",
+      "total_days": 5,
+      "current_streak": 2,
+      "longest_streak": 3,
+      "active_streak": false,
+      "last_update": "2024-05-06",
+      "first_day": "2024-05-01",
+      "highlight": "Shipped a blog post summarizing learnings from the first week.",
+      "days_since_update": 532
+    }
+  ]
+}

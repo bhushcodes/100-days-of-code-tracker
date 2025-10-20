@@ -1,0 +1,2 @@
+# The leaderboard script uses only the Python standard library.
+# Add additional dependencies here when extending automation.

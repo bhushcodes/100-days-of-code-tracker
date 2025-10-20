@@ -1,0 +1,12 @@
+{
+  "user": "your-github-handle",
+  "entries": [
+    {
+      "day": 1,
+      "date": "2024-01-01",
+      "summary": "Describe what you built or learned today (1-3 sentences).",
+      "technologies": ["Python", "Django"],
+      "links": ["https://link-to-your-demo-or-resource.com"]
+    }
+  ]
+}
