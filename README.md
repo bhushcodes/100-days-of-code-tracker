@@ -60,20 +60,20 @@ cp templates/user-log-template.json logs/users/bhushcodes.json
 
 ### **Step 4: Edit Your Log File**
 
-Open `logs/users/bhushcodes.json` in any text editor (VS Code, Sublime, Notepad++, etc.)
+Open `logs/users/your-username.json` in any text editor (VS Code, Sublime, Notepad++, etc.)
 
 **Add your first entry:**
 
 ```json
 {
-  "user": "bhushcodes",
+  "user": "your-username",
   "entries": [
     {
       "day": 1,
       "date": "2025-10-20",
       "summary": "Started my 100 Days of Code journey! Set up my environment and learned about...",
       "technologies": ["JavaScript", "Git"],
-      "links": ["https://github.com/bhushcodes/my-first-project"],
+      "links": ["https://github.com/your-username/my-first-project"],
       "highlight": "Completed my first coding challenge! 🎉"
     }
   ]
@@ -82,7 +82,7 @@ Open `logs/users/bhushcodes.json` in any text editor (VS Code, Sublime, Notepad+
 
 **Important:**
 - ✅ Use **today's date** in `YYYY-MM-DD` format
-- ✅ Replace `"bhushcodes"` with your actual GitHub username
+- ✅ Replace `"your-username"` with your actual GitHub username
 - ✅ Fill in what you learned/built today
 - ✅ Add technologies you used
 - ✅ Share your best moment in the `highlight` field
@@ -103,6 +103,13 @@ python3 scripts/update_leaderboard.py
 ### **Step 6: Commit and Push Your Changes**
 
 ```bash
+git add logs/users/your-username.json data/ website/data/
+git commit -m "Day 1: Started my coding journey!"
+git push origin main
+```
+
+**Example:** If your username is `bhushcodes`:
+```bash
 git add logs/users/bhushcodes.json data/ website/data/
 git commit -m "Day 1: Started my coding journey!"
 git push origin main
@@ -115,7 +122,7 @@ If you want to add your progress to the main leaderboard:
 1. Go to your forked repository on GitHub
 2. Click **"Pull requests"** tab
 3. Click **"New pull request"**
-4. Add a title: `Add bhushcodes - Day 1`
+4. Add a title: `Add [your-username] - Day 1` (Example: `Add bhushcodes - Day 1`)
 5. Submit the pull request
 
 ---
@@ -130,7 +137,7 @@ If you want to add your progress to the main leaderboard:
   "date": "2025-10-21",
   "summary": "Built a todo app with React hooks. Learned about useState and useEffect.",
   "technologies": ["React", "JavaScript", "CSS"],
-  "links": ["https://github.com/bhushcodes/react-todo"],
+  "links": ["https://github.com/your-username/react-todo"],
   "highlight": "Finally understood how useEffect cleanup works! 💡"
 }
 ```
