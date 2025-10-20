@@ -1,0 +1,16 @@
+[build]
+  command = "echo 'No build needed'"
+  functions = "netlify/functions"
+  publish = "."
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[dev]
+  command = "python3 -m http.server 8080"
+  port = 8080
+  targetPort = 8080
+  publish = "."
+  autoLaunch = true

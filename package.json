@@ -1,0 +1,8 @@
+{
+  "name": "100-days-of-code-tracker",
+  "version": "1.0.0",
+  "description": "Community leaderboard for #100DaysOfCode challenge",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  }
+}
