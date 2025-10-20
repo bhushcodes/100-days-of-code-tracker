@@ -53,61 +53,120 @@
     </header>
 
     <!-- How It Works Section -->
-    <section class="card nes-container is-rounded" style="margin: 2rem auto; max-width: 1200px; background: var(--neo-yellow); border: 5px solid var(--neo-border); padding: 2rem;">
-      <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem;">
+    <section class="card nes-container is-rounded animate__animated animate__fadeInUp" style="margin: 2rem auto; max-width: 1200px; background: linear-gradient(135deg, var(--neo-yellow) 0%, var(--neo-pink) 100%); border: 5px solid var(--neo-border); padding: 3rem; position: relative; overflow: hidden;">
+      <div style="position: absolute; top: -50px; right: -50px; width: 200px; height: 200px; background: rgba(255,255,255,0.1); border-radius: 50%; pointer-events: none;"></div>
+      <div style="position: absolute; bottom: -30px; left: -30px; width: 150px; height: 150px; background: rgba(255,255,255,0.1); border-radius: 50%; pointer-events: none;"></div>
+      
+      <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; text-shadow: 3px 3px 0 rgba(0,0,0,0.1); position: relative; z-index: 1;">
         <span class="icon">⚡</span> How It Works
       </h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; text-align: center;">
-        <div style="padding: 1.5rem; background: #fff; border: 4px solid var(--neo-border); box-shadow: 6px 6px 0 var(--neo-border);">
-          <div style="font-size: 3rem; margin-bottom: 1rem;">1️⃣</div>
-          <h3 style="font-size: 1.2rem;">Login with GitHub</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; position: relative; z-index: 1;">
+        <div class="how-it-works-card" style="padding: 2rem; background: #fff; border: 5px solid var(--neo-border); box-shadow: 8px 8px 0 var(--neo-border); transition: all 0.3s ease; cursor: pointer; position: relative;">
+          <div style="position: absolute; top: -15px; left: -15px; width: 50px; height: 50px; background: var(--neo-cyan); border: 4px solid var(--neo-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; box-shadow: 4px 4px 0 var(--neo-border);">1</div>
+          <div style="font-size: 4rem; margin: 1rem 0;">🔐</div>
+          <h3 style="font-size: 1.3rem; font-weight: 900; margin-bottom: 0.5rem;">Login with GitHub</h3>
+          <p style="opacity: 0.7; font-size: 0.9rem;">One-click OAuth</p>
+          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 3px dashed var(--neo-border);">
+            <span style="background: var(--neo-green); padding: 0.3rem 0.8rem; border: 3px solid var(--neo-border); font-size: 0.8rem; font-weight: 700;">SECURE</span>
+          </div>
         </div>
-        <div style="padding: 1.5rem; background: #fff; border: 4px solid var(--neo-border); box-shadow: 6px 6px 0 var(--neo-border);">
-          <div style="font-size: 3rem; margin-bottom: 1rem;">2️⃣</div>
-          <h3 style="font-size: 1.2rem;">Log Your Progress</h3>
+        <div class="how-it-works-card" style="padding: 2rem; background: #fff; border: 5px solid var(--neo-border); box-shadow: 8px 8px 0 var(--neo-border); transition: all 0.3s ease; cursor: pointer; position: relative;">
+          <div style="position: absolute; top: -15px; left: -15px; width: 50px; height: 50px; background: var(--neo-purple); color: #fff; border: 4px solid var(--neo-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; box-shadow: 4px 4px 0 var(--neo-border);">2</div>
+          <div style="font-size: 4rem; margin: 1rem 0;">📝</div>
+          <h3 style="font-size: 1.3rem; font-weight: 900; margin-bottom: 0.5rem;">Log Your Progress</h3>
+          <p style="opacity: 0.7; font-size: 0.9rem;">30 seconds daily</p>
+          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 3px dashed var(--neo-border);">
+            <span style="background: var(--neo-yellow); padding: 0.3rem 0.8rem; border: 3px solid var(--neo-border); font-size: 0.8rem; font-weight: 700;">QUICK</span>
+          </div>
         </div>
-        <div style="padding: 1.5rem; background: #fff; border: 4px solid var(--neo-border); box-shadow: 6px 6px 0 var(--neo-border);">
-          <div style="font-size: 3rem; margin-bottom: 1rem;">3️⃣</div>
-          <h3 style="font-size: 1.2rem;">Climb the Leaderboard</h3>
+        <div class="how-it-works-card" style="padding: 2rem; background: #fff; border: 5px solid var(--neo-border); box-shadow: 8px 8px 0 var(--neo-border); transition: all 0.3s ease; cursor: pointer; position: relative;">
+          <div style="position: absolute; top: -15px; left: -15px; width: 50px; height: 50px; background: var(--neo-pink); border: 4px solid var(--neo-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 1.5rem; box-shadow: 4px 4px 0 var(--neo-border);">3</div>
+          <div style="font-size: 4rem; margin: 1rem 0;">🏆</div>
+          <h3 style="font-size: 1.3rem; font-weight: 900; margin-bottom: 0.5rem;">Climb the Leaderboard</h3>
+          <p style="opacity: 0.7; font-size: 0.9rem;">Auto-ranked daily</p>
+          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 3px dashed var(--neo-border);">
+            <span style="background: var(--neo-cyan); padding: 0.3rem 0.8rem; border: 3px solid var(--neo-border); font-size: 0.8rem; font-weight: 700;">LIVE</span>
+          </div>
         </div>
       </div>
-      <p style="text-align: center; margin-top: 2rem; font-weight: 700; font-size: 1.1rem;">
-        ⏱️ 30 seconds per day
-      </p>
+      <div style="text-align: center; margin-top: 3rem; background: rgba(0,0,0,0.8); color: #fff; padding: 1.5rem; border: 4px solid var(--neo-border); box-shadow: 6px 6px 0 var(--neo-border); position: relative; z-index: 1;">
+        <p style="font-weight: 900; font-size: 1.3rem; margin: 0;">⏱️ Complete workflow in just 30 seconds per day</p>
+      </div>
     </section>
 
-    <!-- Why Join Section -->
-    <section class="card nes-container is-rounded" style="margin: 2rem auto; max-width: 1200px; background: var(--neo-purple); color: #fff; border: 5px solid var(--neo-border); padding: 2rem;">
-      <h2 style="text-align: center; margin-bottom: 2rem; font-size: 2rem; color: #fff;">
-        <span class="icon">✨</span> Features
+    <style>
+      .how-it-works-card:hover {
+        transform: translateY(-10px) rotate(2deg);
+        box-shadow: 12px 12px 0 var(--neo-border);
+      }
+    </style>
+
+    <!-- Features Section -->
+    <section class="card nes-container is-rounded animate__animated animate__fadeInUp" style="margin: 2rem auto; max-width: 1200px; background: linear-gradient(135deg, var(--neo-purple) 0%, var(--neo-text) 100%); color: #fff; border: 5px solid var(--neo-border); padding: 3rem; position: relative; overflow: hidden;">
+      <!-- Animated Background Circles -->
+      <div style="position: absolute; top: 20%; left: 10%; width: 100px; height: 100px; background: rgba(255,255,255,0.05); border-radius: 50%; animation: float 6s ease-in-out infinite;"></div>
+      <div style="position: absolute; bottom: 20%; right: 10%; width: 150px; height: 150px; background: rgba(255,255,255,0.05); border-radius: 50%; animation: float 8s ease-in-out infinite reverse;"></div>
+      
+      <h2 style="text-align: center; margin-bottom: 3rem; font-size: 2.5rem; text-shadow: 4px 4px 0 rgba(0,0,0,0.3); position: relative; z-index: 1;">
+        <span class="icon">✨</span> Powerful Features
       </h2>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
-        <div>
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
-          <h3 style="color: var(--neo-yellow); font-size: 1.1rem;">Live Leaderboard</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; position: relative; z-index: 1;">
+        <div class="feature-card" style="background: rgba(255,255,255,0.95); color: #000; padding: 2rem 1.5rem; border: 5px solid var(--neo-border); box-shadow: 6px 6px 0 rgba(0,0,0,0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neo-green);"></div>
+          <div style="font-size: 3.5rem; margin-bottom: 1rem; animation: bounce 2s ease-in-out infinite;">🏆</div>
+          <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 0.5rem;">Live Leaderboard</h3>
+          <p style="font-size: 0.85rem; opacity: 0.7;">Real-time rankings</p>
         </div>
-        <div>
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🤖</div>
-          <h3 style="color: var(--neo-yellow); font-size: 1.1rem;">Auto-Commit</h3>
+        <div class="feature-card" style="background: rgba(255,255,255,0.95); color: #000; padding: 2rem 1.5rem; border: 5px solid var(--neo-border); box-shadow: 6px 6px 0 rgba(0,0,0,0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neo-cyan);"></div>
+          <div style="font-size: 3.5rem; margin-bottom: 1rem; animation: bounce 2s ease-in-out infinite 0.2s;">🤖</div>
+          <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 0.5rem;">Auto-Commit</h3>
+          <p style="font-size: 0.85rem; opacity: 0.7;">Hands-free saves</p>
         </div>
-        <div>
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔥</div>
-          <h3 style="color: var(--neo-yellow); font-size: 1.1rem;">Streak Tracking</h3>
+        <div class="feature-card" style="background: rgba(255,255,255,0.95); color: #000; padding: 2rem 1.5rem; border: 5px solid var(--neo-border); box-shadow: 6px 6px 0 rgba(0,0,0,0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neo-pink);"></div>
+          <div style="font-size: 3.5rem; margin-bottom: 1rem; animation: bounce 2s ease-in-out infinite 0.4s;">🔥</div>
+          <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 0.5rem;">Streak Tracking</h3>
+          <p style="font-size: 0.85rem; opacity: 0.7;">Never miss a day</p>
         </div>
-        <div>
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">📊</div>
-          <h3 style="color: var(--neo-yellow); font-size: 1.1rem;">Progress Charts</h3>
+        <div class="feature-card" style="background: rgba(255,255,255,0.95); color: #000; padding: 2rem 1.5rem; border: 5px solid var(--neo-border); box-shadow: 6px 6px 0 rgba(0,0,0,0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neo-yellow);"></div>
+          <div style="font-size: 3.5rem; margin-bottom: 1rem; animation: bounce 2s ease-in-out infinite 0.6s;">📊</div>
+          <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 0.5rem;">Progress Charts</h3>
+          <p style="font-size: 0.85rem; opacity: 0.7;">Visualize growth</p>
         </div>
-        <div>
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔒</div>
-          <h3 style="color: var(--neo-yellow); font-size: 1.1rem;">Your Data</h3>
+        <div class="feature-card" style="background: rgba(255,255,255,0.95); color: #000; padding: 2rem 1.5rem; border: 5px solid var(--neo-border); box-shadow: 6px 6px 0 rgba(0,0,0,0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neo-purple);"></div>
+          <div style="font-size: 3.5rem; margin-bottom: 1rem; animation: bounce 2s ease-in-out infinite 0.8s;">🔒</div>
+          <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 0.5rem;">Your Data</h3>
+          <p style="font-size: 0.85rem; opacity: 0.7;">Full control</p>
         </div>
-        <div>
-          <div style="font-size: 3rem; margin-bottom: 0.5rem;">🚀</div>
-          <h3 style="color: var(--neo-yellow); font-size: 1.1rem;">100% Free</h3>
+        <div class="feature-card" style="background: rgba(255,255,255,0.95); color: #000; padding: 2rem 1.5rem; border: 5px solid var(--neo-border); box-shadow: 6px 6px 0 rgba(0,0,0,0.3); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); cursor: pointer; position: relative; overflow: hidden;">
+          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--neo-green);"></div>
+          <div style="font-size: 3.5rem; margin-bottom: 1rem; animation: bounce 2s ease-in-out infinite 1s;">🚀</div>
+          <h3 style="font-weight: 900; font-size: 1.2rem; margin-bottom: 0.5rem;">100% Free</h3>
+          <p style="font-size: 0.85rem; opacity: 0.7;">Forever</p>
         </div>
       </div>
     </section>
+
+    <style>
+      .feature-card:hover {
+        transform: scale(1.1) rotate(-3deg);
+        box-shadow: 10px 10px 0 rgba(0,0,0,0.4);
+        z-index: 10;
+      }
+      
+      @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+    </style>
 
     <main class="layout">
       <!-- Stats Section -->
