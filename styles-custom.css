@@ -1418,6 +1418,11 @@ body {
   .card-leaderboard {
     padding: 1.5rem 0.5rem !important;
   }
+  
+  /* Hide info box on mobile */
+  .info-box {
+    display: none !important;
+  }
 }
 
 /* Extra Small Mobile (max-width: 360px) */
