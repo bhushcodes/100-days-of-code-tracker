@@ -229,6 +229,7 @@
       <div class="form-group">
         <label for="username">GitHub Username</label>
         <input type="text" id="username" placeholder="bhushcodes" required>
+        <small id="usernameStatus" style="display: none; font-weight: 700;"></small>
       </div>
 
       <div class="form-group">
@@ -240,6 +241,10 @@
       <div class="form-group">
         <label for="technologies">Technologies Used</label>
         <input type="text" id="technologies" placeholder="React, JavaScript, CSS" required>
+        <div id="techSuggestions" style="margin-top: 0.5rem; display: none;">
+          <small style="font-weight: 700; display: block; margin-bottom: 0.5rem;">💡 Suggested (from your GitHub):</small>
+          <div id="techButtons" style="display: flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -302,43 +307,81 @@
       document.getElementById('charCount').textContent = e.target.value.length;
     });
 
-    // Validate on username change
-    document.getElementById('username').addEventListener('change', validateUser);
+    // Validate on username change with debounce
+    let usernameTimeout;
+    document.getElementById('username').addEventListener('input', (e) => {
+      clearTimeout(usernameTimeout);
+      usernameTimeout = setTimeout(() => validateUser(), 500);
+    });
 
-    function validateUser() {
+    async function validateUser() {
       const username = document.getElementById('username').value;
       if (!username) return;
 
-      localStorage.setItem('username', username);
-      currentUsername = username;
+      const usernameStatus = document.getElementById('usernameStatus');
+      usernameStatus.style.display = 'block';
+      usernameStatus.style.color = '#666';
+      usernameStatus.textContent = '⏳ Checking GitHub username...';
 
-      // Check rate limiting
-      const today = new Date().toISOString().split('T')[0];
-      const userLog = userLogs[username] || { entries: [], lastLog: null };
-      
-      // Update status icons
-      document.getElementById('status-date').textContent = '✅';
-      document.getElementById('status-streak').textContent = '✅';
-      document.getElementById('status-github').textContent = '✅';
-
-      // Check if already logged today
-      if (userLog.lastLog === today) {
-        showWarning('⚠️ You already logged today! Come back tomorrow to continue your streak.');
-        submitBtn.disabled = true;
-        return;
-      }
-
-      // Check streak
-      const lastDate = userLog.lastLog ? new Date(userLog.lastLog) : null;
-      if (lastDate) {
-        const daysSince = Math.floor((new Date(today) - lastDate) / (1000 * 60 * 60 * 24));
-        if (daysSince > 1) {
-          showWarning(`⚠️ Warning: Your last log was ${daysSince} days ago. Your streak will reset!`);
+      try {
+        // Check if GitHub user exists
+        const userResponse = await fetch(`https://api.github.com/users/${username}`);
+        
+        if (userResponse.status === 404) {
+          usernameStatus.style.color = '#ff6b6b';
+          usernameStatus.textContent = '❌ GitHub username not found!';
+          submitBtn.disabled = true;
+          return;
         }
-      }
 
-      submitBtn.disabled = false;
-      hideWarning();
+        if (!userResponse.ok) {
+          usernameStatus.style.color = '#ff6b6b';
+          usernameStatus.textContent = '⚠️ Could not verify username';
+          // Don't block, GitHub API might be rate limited
+        } else {
+          const userData = await userResponse.json();
+          usernameStatus.style.color = '#06ffa5';
+          usernameStatus.textContent = `✅ ${userData.name || username} (@${username}) - ${userData.public_repos} repos`;
+          
+          // Fetch user's languages
+          await fetchUserLanguages(username);
+        }
+
+        localStorage.setItem('username', username);
+        currentUsername = username;
+
+        // Check rate limiting
+        const today = new Date().toISOString().split('T')[0];
+        const userLog = userLogs[username] || { entries: [], lastLog: null };
+        
+        // Update status icons
+        document.getElementById('status-date').textContent = '✅';
+        document.getElementById('status-streak').textContent = '✅';
+        document.getElementById('status-github').textContent = '✅';
+
+        // Check if already logged today
+        if (userLog.lastLog === today) {
+          showWarning('⚠️ You already logged today! Come back tomorrow to continue your streak.');
+          submitBtn.disabled = true;
+          return;
+        }
+
+        // Check streak
+        const lastDate = userLog.lastLog ? new Date(userLog.lastLog) : null;
+        if (lastDate) {
+          const daysSince = Math.floor((new Date(today) - lastDate) / (1000 * 60 * 60 * 24));
+          if (daysSince > 1) {
+            showWarning(`⚠️ Warning: Your last log was ${daysSince} days ago. Your streak will reset!`);
+          }
+        }
+
+        submitBtn.disabled = false;
+        hideWarning();
+      } catch (error) {
+        usernameStatus.style.color = '#ff6b6b';
+        usernameStatus.textContent = '⚠️ Error checking username';
+        console.error(error);
+      }
     }
 
     function showWarning(message) {
@@ -431,6 +474,88 @@
       URL.revokeObjectURL(url);
 
       alert('✅ File downloaded! Upload this to logs/users/ folder in your repo.');
+    }
+
+    // Fetch user's most used languages from GitHub
+    async function fetchUserLanguages(username) {
+      try {
+        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=10`);
+        if (!reposResponse.ok) return;
+
+        const repos = await reposResponse.json();
+        const languages = new Set();
+
+        // Get languages from recent repos
+        for (const repo of repos) {
+          if (repo.language) {
+            languages.add(repo.language);
+          }
+        }
+
+        // Display language suggestions
+        if (languages.size > 0) {
+          displayLanguageSuggestions(Array.from(languages));
+        }
+      } catch (error) {
+        console.log('Could not fetch languages:', error);
+      }
+    }
+
+    function displayLanguageSuggestions(languages) {
+      const techSuggestions = document.getElementById('techSuggestions');
+      const techButtons = document.getElementById('techButtons');
+      
+      techButtons.innerHTML = '';
+      
+      languages.forEach(lang => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = lang;
+        btn.style.cssText = `
+          padding: 0.5rem 1rem;
+          background: var(--neo-cyan);
+          border: 3px solid var(--neo-border);
+          font-weight: 700;
+          cursor: pointer;
+          font-family: 'Space Grotesk', sans-serif;
+          transition: all 0.2s ease;
+        `;
+        
+        btn.addEventListener('mouseover', () => {
+          btn.style.transform = 'translate(2px, 2px)';
+        });
+        
+        btn.addEventListener('mouseout', () => {
+          btn.style.transform = 'translate(0, 0)';
+        });
+        
+        btn.addEventListener('click', () => {
+          const techInput = document.getElementById('technologies');
+          const currentValue = techInput.value.trim();
+          
+          if (currentValue) {
+            // Add to existing, remove duplicates
+            const techs = currentValue.split(',').map(t => t.trim());
+            if (!techs.includes(lang)) {
+              techInput.value = currentValue + ', ' + lang;
+            }
+          } else {
+            techInput.value = lang;
+          }
+          
+          // Visual feedback
+          btn.style.background = 'var(--neo-green)';
+          btn.textContent = lang + ' ✓';
+          setTimeout(() => {
+            btn.style.background = 'var(--neo-cyan)';
+            btn.textContent = lang;
+          }, 1000);
+        });
+        
+        techButtons.appendChild(btn);
+      });
+      
+      techSuggestions.style.display = 'block';
     }
 
     // Check GitHub activity (optional - requires GitHub API)
