@@ -40,9 +40,9 @@ git clone https://github.com/YOUR-USERNAME/100-days-of-code-tracker.git
 cd 100-days-of-code-tracker
 ```
 
-**Example:** If your username is `johndoe`:
+**Example:** If your username is `bhushcodes`:
 ```bash
-git clone https://github.com/johndoe/100-days-of-code-tracker.git
+git clone https://github.com/bhushcodes/100-days-of-code-tracker.git
 cd 100-days-of-code-tracker
 ```
 
@@ -53,27 +53,27 @@ cd 100-days-of-code-tracker
 cp templates/user-log-template.json logs/users/your-username.json
 ```
 
-**Example:** If your username is `johndoe`:
+**Example:** If your username is `bhushcodes`:
 ```bash
-cp templates/user-log-template.json logs/users/johndoe.json
+cp templates/user-log-template.json logs/users/bhushcodes.json
 ```
 
 ### **Step 4: Edit Your Log File**
 
-Open `logs/users/your-username.json` in any text editor (VS Code, Sublime, Notepad++, etc.)
+Open `logs/users/bhushcodes.json` in any text editor (VS Code, Sublime, Notepad++, etc.)
 
 **Add your first entry:**
 
 ```json
 {
-  "user": "your-username",
+  "user": "bhushcodes",
   "entries": [
     {
       "day": 1,
       "date": "2025-10-20",
       "summary": "Started my 100 Days of Code journey! Set up my environment and learned about...",
       "technologies": ["JavaScript", "Git"],
-      "links": ["https://github.com/your-username/project"],
+      "links": ["https://github.com/bhushcodes/my-first-project"],
       "highlight": "Completed my first coding challenge! 🎉"
     }
   ]
@@ -82,7 +82,7 @@ Open `logs/users/your-username.json` in any text editor (VS Code, Sublime, Notep
 
 **Important:**
 - ✅ Use **today's date** in `YYYY-MM-DD` format
-- ✅ Replace `"your-username"` with your actual GitHub username
+- ✅ Replace `"bhushcodes"` with your actual GitHub username
 - ✅ Fill in what you learned/built today
 - ✅ Add technologies you used
 - ✅ Share your best moment in the `highlight` field
@@ -103,7 +103,7 @@ python3 scripts/update_leaderboard.py
 ### **Step 6: Commit and Push Your Changes**
 
 ```bash
-git add logs/users/your-username.json data/ website/data/
+git add logs/users/bhushcodes.json data/ website/data/
 git commit -m "Day 1: Started my coding journey!"
 git push origin main
 ```
@@ -115,7 +115,7 @@ If you want to add your progress to the main leaderboard:
 1. Go to your forked repository on GitHub
 2. Click **"Pull requests"** tab
 3. Click **"New pull request"**
-4. Add a title: `Add [your-username] - Day 1`
+4. Add a title: `Add bhushcodes - Day 1`
 5. Submit the pull request
 
 ---
@@ -130,7 +130,7 @@ If you want to add your progress to the main leaderboard:
   "date": "2025-10-21",
   "summary": "Built a todo app with React hooks. Learned about useState and useEffect.",
   "technologies": ["React", "JavaScript", "CSS"],
-  "links": ["https://github.com/your-username/react-todo"],
+  "links": ["https://github.com/bhushcodes/react-todo"],
   "highlight": "Finally understood how useEffect cleanup works! 💡"
 }
 ```
@@ -188,7 +188,7 @@ git push origin main
 │   └── leaderboard.json      # Generated leaderboard data
 ├── 📝 logs/
 │   └── users/                # All user logs go here
-│       └── your-username.json
+│       └── bhushcodes.json
 ├── 📋 templates/             # Templates to get you started
 │   ├── user-log-template.json
 │   └── daily-log-template.md
