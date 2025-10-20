@@ -21,7 +21,7 @@ This is a **beautiful, community-driven leaderboard** that transforms the #100Da
 
 ## ✨ Live Demo
 
-Check out the live leaderboard: **[bhushcodes.github.io/100-days-of-code-tracker](https://bhushcodes.github.io/100-days-of-code-tracker/)**
+Check out the live leaderboard: **[100-days-of-code-tracker.netlify.app](https://100-days-of-code-tracker.netlify.app/)**
 
 ---
 
