@@ -307,6 +307,29 @@ function setupInteractivity() {
     render();
   });
   
+  // Show scroll hint on mobile
+  function showScrollHint() {
+    const tableWrapper = document.querySelector('.table-wrapper');
+    const scrollHint = document.querySelector('.scroll-hint');
+    
+    if (tableWrapper && scrollHint && window.innerWidth <= 768) {
+      const table = document.querySelector('#leaderboard-table');
+      if (table && table.scrollWidth > tableWrapper.clientWidth) {
+        scrollHint.style.display = 'block';
+        
+        // Hide hint after scroll
+        tableWrapper.addEventListener('scroll', () => {
+          scrollHint.style.display = 'none';
+        }, { once: true });
+        
+        // Auto-hide after 3 seconds
+        setTimeout(() => {
+          scrollHint.style.display = 'none';
+        }, 3000);
+      }
+    }
+  }
+
   // Add hover effects to table rows
   document.addEventListener('DOMContentLoaded', () => {
     const table = document.getElementById('leaderboard-table');

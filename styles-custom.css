@@ -1018,8 +1018,20 @@ body {
     padding: 1.5rem 1rem;
   }
   
+  /* Leaderboard Table - Tablet */
+  .table-wrapper {
+    max-height: 75vh;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
   #leaderboard-table {
     font-size: 0.85rem;
+  }
+  
+  #leaderboard-table th,
+  #leaderboard-table td {
+    padding: 0.8rem 0.6rem;
   }
 }
 
@@ -1368,11 +1380,43 @@ body {
     font-size: 1.8rem !important;
   }
   
-  /* Better table on small screens */
+  /* Leaderboard Table - Small Mobile */
+  .table-wrapper {
+    max-height: 70vh !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  #leaderboard-table {
+    font-size: 0.75rem;
+    min-width: 600px;
+  }
+  
   #leaderboard-table th,
   #leaderboard-table td {
-    padding: 0.5rem 0.3rem;
-    font-size: 0.7rem;
+    padding: 0.6rem 0.4rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+  
+  #leaderboard-table th {
+    position: sticky;
+    top: 0;
+    background: var(--neo-text);
+    z-index: 2;
+  }
+  
+  /* Hide less important columns on mobile */
+  #leaderboard-table th:nth-child(6),
+  #leaderboard-table td:nth-child(6),
+  #leaderboard-table th:nth-child(7),
+  #leaderboard-table td:nth-child(7) {
+    display: none;
+  }
+  
+  /* Mobile: Show only essential columns */
+  .card-leaderboard {
+    padding: 1.5rem 0.5rem !important;
   }
 }
 
@@ -1449,6 +1493,33 @@ body {
   
   .icon {
     font-size: 1.5rem !important;
+  }
+  
+  /* Leaderboard Table - Extra Small */
+  .table-wrapper {
+    max-height: 60vh !important;
+    border: 3px solid var(--neo-border) !important;
+  }
+  
+  #leaderboard-table {
+    font-size: 0.7rem;
+    min-width: 500px;
+  }
+  
+  #leaderboard-table th,
+  #leaderboard-table td {
+    padding: 0.5rem 0.3rem;
+    font-size: 0.7rem;
+  }
+  
+  /* Hide highlight column on very small screens */
+  #leaderboard-table th:nth-child(8),
+  #leaderboard-table td:nth-child(8) {
+    display: none;
+  }
+  
+  .card-leaderboard {
+    padding: 1rem 0.3rem !important;
   }
 }
 
