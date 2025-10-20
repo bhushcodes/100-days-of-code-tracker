@@ -1,7 +1,21 @@
 {
   "name": "100-days-of-code-tracker",
   "version": "1.0.0",
-  "description": "Community leaderboard for #100DaysOfCode challenge",
+  "description": "Community leaderboard for #100DaysOfCode challenge with beautiful neobrutalism design",
+  "homepage": "https://100-days-of-code-tracker.netlify.app/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bhushcodes/100-days-of-code-tracker.git"
+  },
+  "author": "Bhushan Pawar (bhushcodes)",
+  "license": "MIT",
+  "keywords": [
+    "100DaysOfCode",
+    "coding-challenge",
+    "leaderboard",
+    "tracker",
+    "neobrutalism"
+  ],
   "dependencies": {
     "node-fetch": "^2.6.7"
   }
