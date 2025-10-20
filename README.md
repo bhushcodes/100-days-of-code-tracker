@@ -2,6 +2,10 @@
 
 > **Making the #100DaysOfCode challenge more fun, competitive, and motivating!**
 
+**⚡ TL;DR:** Visit [100-days-of-code-tracker.netlify.app](https://100-days-of-code-tracker.netlify.app/), login with GitHub, start logging! | [Quick Start Guide →](QUICKSTART.md)
+
+---
+
 Hey there, fellow coder! 👋 Welcome to your new favorite way to track your coding journey.
 
 Ever started the #100DaysOfCode challenge and lost motivation after a few weeks? Or wished you could see how your friends are progressing? That's exactly why this exists!
@@ -25,137 +29,68 @@ Check out the live leaderboard: **[100-days-of-code-tracker.netlify.app](https:/
 
 ---
 
-## 🚀 How to Join the Challenge
+## 🚀 How to Start (3 Steps!)
 
-### **Option 1: Quick Start with OAuth (Recommended)** 🚀
+### **1. Visit the Website**
+Go to: **[100-days-of-code-tracker.netlify.app](https://100-days-of-code-tracker.netlify.app/)**
 
-1. **Visit the Website**: [100-days-of-code-tracker.netlify.app](https://100-days-of-code-tracker.netlify.app/)
-2. **Click "Login with GitHub"** - Secure OAuth authentication
-3. **Authorize the app** - We only need access to create files in your repo
-4. **Start logging!** - Simple web form to track your daily progress
+### **2. Click "Login with GitHub"**
+Authorize the app (we only need access to save your progress)
 
-**Benefits:**
-- ✅ No manual setup required
-- ✅ Automatic commits to your repository
-- ✅ Beautiful web interface
-- ✅ Instant updates to leaderboard
+### **3. Start Logging!**
+Fill the form daily with:
+- What you built/learned
+- Technologies used
+- Your highlight
+
+**Done!** Your progress automatically saves to GitHub and appears on the leaderboard. 🎉
 
 ---
 
-### **Option 2: Manual Setup (For Advanced Users)** 💻
-
-#### **Step 1: Fork & Clone**
+### **Advanced: Manual Logging** 💻
+<details>
+<summary>Click if you prefer editing JSON files directly</summary>
 
 ```bash
+# 1. Fork and clone
 git clone https://github.com/YOUR-USERNAME/100-days-of-code-tracker.git
-cd 100-days-of-code-tracker
-```
 
-#### **Step 2: Create Your Log File**
-
-```bash
+# 2. Create your log
 cp templates/user-log-template.json logs/users/your-username.json
-```
 
-#### **Step 3: Add Your First Entry**
+# 3. Edit the JSON file with your entries
 
-Edit `logs/users/your-username.json`:
-
-```json
-{
-  "user": "your-username",
-  "entries": [
-    {
-      "day": 1,
-      "date": "2025-10-20",
-      "summary": "Started my 100 Days of Code journey!",
-      "technologies": ["JavaScript", "Git"],
-      "links": ["https://github.com/your-username/my-project"],
-      "highlight": "Completed my first challenge! 🎉"
-    }
-  ]
-}
-```
-
-#### **Step 4: Update Leaderboard & Push**
-
-```bash
+# 4. Update and push
 python3 scripts/update_leaderboard.py
-git add -A
-git commit -m "Day 1: Started my journey!"
-git push origin main
+git add -A && git commit -m "Day X" && git push
+
+# 5. Open a Pull Request
 ```
-
-#### **Step 5: Submit Pull Request**
-
-Open a PR to add your progress to the main leaderboard!
+</details>
 
 ---
 
-## 📝 Logging Daily Progress
+## 📝 Daily Logging
 
-### **Via Web Interface (Easiest)** 🌐
+**Just visit the website and fill the form!** That's it.
 
-1. Go to [100-days-of-code-tracker.netlify.app](https://100-days-of-code-tracker.netlify.app/)
-2. Login with GitHub
-3. Fill out the daily log form
-4. Click submit - Done! ✨
-
-**Your progress automatically:**
+Your progress automatically:
 - ✅ Saves to your GitHub repository
 - ✅ Updates the leaderboard
 - ✅ Calculates your streak
-- ✅ Commits with a clean message
+- ✅ Shows your ranking
 
-### **Via Manual Edit** 💻
-
-Add to your `logs/users/your-username.json`:
-
-```json
-{
-  "day": 2,
-  "date": "2025-10-21",
-  "summary": "Built a React todo app",
-  "technologies": ["React", "JavaScript"],
-  "links": ["https://github.com/your-username/react-todo"],
-  "highlight": "useEffect cleanup finally clicked! 💡"
-}
-```
-
-Then:
-```bash
-python3 scripts/update_leaderboard.py
-git add -A && git commit -m "Day 2: React todo app" && git push
-```
+**No manual steps needed!** 🎉
 
 ---
 
-## 💡 Pro Tips for Success
+## 💡 Tips for Success
 
-### **1. Log Every Day**
-- Even if you code for 30 minutes, log it!
-- Consistency beats intensity
-
-### **2. Use Proper Date Format**
-- Always use `YYYY-MM-DD` (like `2025-10-20`)
-- The script needs this to calculate streaks
-
-### **3. Be Specific in Your Summary**
-- ❌ "Learned JavaScript"
-- ✅ "Learned about async/await, built a weather API fetch function"
-
-### **4. Share Resources**
-- Add links to tutorials, docs, or your projects
-- Help others learn from what you found useful
-
-### **5. Celebrate Small Wins**
-- Use the `highlight` field to capture "aha!" moments
-- These make the leaderboard more fun and motivating
-
-### **6. Don't Break the Chain**
-- If you miss a day, don't give up!
-- Just log the next day and keep going
-- Progress > Perfection
+1. **Log daily** - Even 30 minutes counts!
+2. **Be specific** - "Built REST API" > "Learned backend"
+3. **Share your wins** - Use the highlight field
+4. **Don't break the chain** - Miss a day? Just continue!
+5. **Progress > Perfection** - Keep going! 💪
 
 ---
 
