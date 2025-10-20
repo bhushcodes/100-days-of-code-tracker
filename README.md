@@ -30,17 +30,29 @@ Click the **Fork** button at the top right of this page. This creates your own c
 
 ### Step 2: Clone Your Fork
 ```bash
+# Replace YOUR-USERNAME with your actual GitHub username
 git clone https://github.com/YOUR-USERNAME/100-days-of-code-tracker.git
+cd 100-days-of-code-tracker
+```
+
+**Example:** If your username is `bhushcodes`, use:
+```bash
+git clone https://github.com/bhushcodes/100-days-of-code-tracker.git
 cd 100-days-of-code-tracker
 ```
 
 ### Step 3: Create Your Log File
 ```bash
-# Copy the template
+# Replace 'your-github-username' with your actual username
 cp templates/user-log-template.json logs/users/your-github-username.json
 
 # Edit it with your info
 # Use any text editor - VS Code, Sublime, even Notepad works!
+```
+
+**Example:** If your username is `bhushcodes`:
+```bash
+cp templates/user-log-template.json logs/users/bhushcodes.json
 ```
 
 ### Step 4: Update the Leaderboard
