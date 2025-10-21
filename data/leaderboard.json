@@ -14,3 +14,19 @@
     }
   ]
 }
+{
+  "generated_at": "2025-10-20T12:07:36+00:00",
+  "users": [
+    {
+      "user": "bhushcodes",
+      "total_days": 1,
+      "current_streak": 1,
+      "longest_streak": 1,
+      "active_streak": true,
+      "last_update": "2025-10-20",
+      "first_day": "2025-10-20",
+      "highlight": "Built an amazing 100 Days of Code Tracker with neobrutalism UI! Created the\u2026",
+      "days_since_update": 0
+    }
+  ]
+}
