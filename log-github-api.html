@@ -493,6 +493,13 @@
       return lines.join('\n');
     }
 
+    function getLocalDateString() {
+      const now = new Date();
+      const offsetMs = now.getTimezoneOffset() * 60000;
+      const local = new Date(now.getTime() - offsetMs);
+      return local.toISOString().split('T')[0];
+    }
+
     async function rebuildLeaderboard(token, username, repo, dayNumber) {
       const files = await listDirectory(token, username, repo, 'logs/users');
       if (!files.length) {
@@ -681,7 +688,7 @@
         }
 
         // Check if already logged today
-        const today = new Date().toISOString().split('T')[0];
+        const today = getLocalDateString();
         const alreadyLogged = logData.entries.some(entry => entry.date === today);
         
         if (alreadyLogged) {

@@ -270,6 +270,13 @@
       return new TextDecoder().decode(bytes);
     }
 
+    function getLocalDateString() {
+      const now = new Date();
+      const offsetMs = now.getTimezoneOffset() * 60000;
+      const local = new Date(now.getTime() - offsetMs);
+      return local.toISOString().split('T')[0];
+    }
+
     async function listDirectory(path) {
       const response = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, {
         headers: {
@@ -605,7 +612,7 @@
           };
         }
 
-        const today = new Date().toISOString().split('T')[0];
+        const today = getLocalDateString();
         const alreadyLogged = logData.entries.some(entry => entry.date === today);
         
         if (alreadyLogged) {
