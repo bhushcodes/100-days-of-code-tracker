@@ -5,9 +5,31 @@
       "day": 1,
       "date": "2025-10-20",
       "summary": "Built an amazing 100 Days of Code Tracker with neobrutalism UI! Created the leaderboard system and deployed to GitHub Pages.",
-      "technologies": ["HTML", "CSS", "JavaScript", "Python"],
-      "links": ["https://github.com/bhushcodes/100-days-of-code-tracker"],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Python"
+      ],
+      "links": [
+        "https://github.com/bhushcodes/100-days-of-code-tracker"
+      ],
       "highlight": "Launched my first open-source project! 🚀"
+    },
+    {
+      "day": 2,
+      "date": "2025-10-21",
+      "summary": "I made a new GitHub repo to share my JavaScript mini projects. I uploaded my first project using HTML, CSS, and JavaScript. It looks nice and fun to try out...!",
+      "technologies": [
+        "JavaScript",
+        "HTML",
+        "CSS"
+      ],
+      "links": [
+        "https://github.com/bhushcodes/JS-mini-projects"
+      ],
+      "highlight": "I’m happy that I started this repo and uploaded my first project. It feels good to see it working and looking cool...!",
+      "timestamp": "2025-10-21T12:00:46.229Z"
     }
   ]
 }
